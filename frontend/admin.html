@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel — Singgimari Baptist Church</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+<!-- ── Header ── -->
+<header class="wiki-header">
+  <div class="nav-container">
+    <div class="wiki-left">
+      <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()"></button>
+      <img src="images/logo.svg" class="wiki-logo" alt="SBC Logo">
+      <div>
+        <h1 class="wiki-title">Singgimari Baptist Church</h1>
+        <span class="wiki-tagline">Admin Panel</span>
+      </div>
+    </div>
+    <nav class="wiki-nav">
+      <div class="nav-item"><a href="index.html">Home</a></div>
+      <div class="nav-item"><a href="blogs.html" class="blogs-btn">Blogs</a></div>
+    </nav>
+    <div class="wiki-right">
+      <a href="#" onclick="logout(); return false;">Logout</a>
+    </div>
+    <div id="navMenu" class="nav-menu"></div>
+  </div>
+</header>
+
+<!-- ── Dashboard Layout ── -->
+<div class="dashboard-wrapper">
+
+  <!-- Sidebar -->
+  <aside class="dashboard-sidebar">
+    <div class="sidebar-profile">
+      <div style="font-weight:700; font-size:0.9rem; color:#01143a;">⚙️ Admin Panel</div>
+      <div id="adminNameDisplay" style="font-size:0.78rem; color:#6b7280; margin-top:0.25rem;"></div>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="#" class="active" onclick="switchTab('stats',this)"><span class="nav-icon">📊</span>Dashboard</a></li>
+      <li><a href="#" onclick="switchTab('events',this)"><span class="nav-icon">📅</span>Events</a></li>
+      <li><a href="#" onclick="switchTab('users',this)"><span class="nav-icon">👥</span>Members</a></li>
+      <li><a href="#" onclick="switchTab('posts',this)"><span class="nav-icon">📝</span>Blog Posts</a></li>
+      <li><a href="#" onclick="switchTab('gallery',this)"><span class="nav-icon">🖼️</span>Gallery</a></li>
+      <li><a href="#" onclick="switchTab('feedback',this)"><span class="nav-icon">💬</span>Feedback</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="dashboard-container">
+
+    <!-- ── Stats Panel ── -->
+    <div id="tab-stats" class="tab-panel active">
+      <div class="section-header">
+        <h2>Dashboard Overview</h2>
+      </div>
+      <div class="stats-grid" id="statsGrid">
+        <div class="loading-state">Loading stats...</div>
+      </div>
+    </div>
+
+    <!-- ── Events Panel ── -->
+    <div id="tab-events" class="tab-panel">
+      <div class="section-header"><h2>Manage Events</h2></div>
+
+      <div class="form-card section">
+        <h3 style="margin:0 0 1rem; font-size:1rem;">Create New Event</h3>
+        <form id="eventForm">
+          <div class="form-group">
+            <label>Event Title</label>
+            <input type="text" id="eventTitle" placeholder="e.g. Sunday Service, Youth Camp" required>
+          </div>
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" id="eventDate" required>
+          </div>
+          <div class="form-group">
+            <label>Location <span style="color:#9ca3af;font-weight:400;">(optional)</span></label>
+            <input type="text" id="eventLocation" placeholder="Singgimari Baptist Church">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="eventDescription" placeholder="Describe the event..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="createEventBtn">Create Event</button>
+        </form>
+      </div>
+
+      <div class="section-header"><h2>All Events</h2></div>
+      <div id="events" class="grid">
+        <div class="loading-state"><span class="spinner spinner-dark"></span> Loading events...</div>
+      </div>
+    </div>
+
+    <!-- ── Members Panel ── -->
+    <div id="tab-users" class="tab-panel">
+      <div class="section-header"><h2>Manage Members</h2></div>
+      <div id="users" class="user-grid">
+        <div class="loading-state"><span class="spinner spinner-dark"></span> Loading members...</div>
+      </div>
+    </div>
+
+    <!-- ── Posts Panel ── -->
+    <div id="tab-posts" class="tab-panel">
+      <div class="tabs">
+        <button class="tab-btn active" onclick="filterPosts('all', this)">All Posts</button>
+        <button class="tab-btn" onclick="filterPosts('pending', this)">Pending</button>
+        <button class="tab-btn" onclick="filterPosts('approved', this)">Approved</button>
+      </div>
+      <div class="section-header"><h2>Blog Posts</h2></div>
+      <div id="posts" class="grid">
+        <div class="loading-state"><span class="spinner spinner-dark"></span> Loading posts...</div>
+      </div>
+    </div>
+
+    <!-- ── Gallery Panel ── -->
+    <div id="tab-gallery" class="tab-panel">
+      <div class="tabs">
+        <button class="tab-btn active" onclick="filterGallery('all', this)">All Images</button>
+        <button class="tab-btn" onclick="filterGallery('pending', this)">Pending</button>
+        <button class="tab-btn" onclick="filterGallery('approved', this)">Approved</button>
+      </div>
+      <div class="section-header"><h2>Gallery Images</h2></div>
+      <div id="gallery" class="grid">
+        <div class="loading-state"><span class="spinner spinner-dark"></span> Loading gallery...</div>
+      </div>
+    </div>
+
+    <!-- ── Feedback Panel ── -->
+    <div id="tab-feedback" class="tab-panel">
+      <div class="section-header"><h2>Feedback Messages</h2></div>
+      <div id="feedback">
+        <div class="loading-state"><span class="spinner spinner-dark"></span> Loading feedback...</div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <p>© 2026 Singgimari Baptist Church — Admin Panel</p>
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script>
+// ── Config ──
+const API_URL = "http://localhost:5000";
+const token   = localStorage.getItem("token");
+const role    = localStorage.getItem("role");
+
+// ── Auth guard ──
+if (!token || role !== "admin") {
+  window.location.href = "login.html";
+}
+
+// Show admin name
+const adminName = localStorage.getItem("userName");
+if (adminName) document.getElementById("adminNameDisplay").textContent = adminName;
+
+// ── Toggle menu ──
+function toggleMenu() {
+  const btn  = document.querySelector(".menu-btn");
+  const menu = document.getElementById("navMenu");
+  if (btn && menu) {
+    btn.classList.toggle("active");
+    menu.classList.toggle("show");
+    btn.setAttribute("aria-expanded", btn.classList.contains("active"));
+  }
+}
+
+// ── Logout ──
+function logout() {
+  localStorage.clear();
+  window.location.href = "login.html";
+}
+
+// ── Toast ──
+function showToast(msg, type = "") {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.className   = "toast " + type;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 3000);
+}
+
+// ── Authorized fetch helper ──
+async function authFetch(url, opts = {}) {
+  const headers = {
+    "Authorization": "Bearer " + token,
+    ...(opts.headers || {})
+  };
+  if (!(opts.body instanceof FormData)) {
+    headers["Content-Type"] = "application/json";
+  }
+  return fetch(API_URL + url, { ...opts, headers });
+}
+
+// ── Tab switching ──
+function switchTab(name, link) {
+  document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+  document.querySelectorAll(".sidebar-nav a").forEach(a => a.classList.remove("active"));
+  document.getElementById("tab-" + name).classList.add("active");
+  if (link) link.classList.add("active");
+
+  // Load data for the tab
+  if (name === "stats")    loadStats();
+  if (name === "events")   loadEvents();
+  if (name === "users")    loadUsers();
+  if (name === "posts")    loadPosts();
+  if (name === "gallery")  loadGallery();
+  if (name === "feedback") loadFeedback();
+}
+
+// ── STATS ──
+async function loadStats() {
+  const grid = document.getElementById("statsGrid");
+  try {
+    const res  = await authFetch("/api/admin/stats");
+    const data = await res.json();
+
+    grid.innerHTML = `
+      <div class="stat-card">
+        <div class="stat-number">${data.totalMembers}</div>
+        <div class="stat-label">Total Members</div>
+      </div>
+      <div class="stat-card ${data.pendingMembers > 0 ? 'highlight' : ''}">
+        <div class="stat-number">${data.pendingMembers}</div>
+        <div class="stat-label">Pending Approvals</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">${data.totalPosts}</div>
+        <div class="stat-label">Total Posts</div>
+      </div>
+      <div class="stat-card ${data.pendingPosts > 0 ? 'highlight' : ''}">
+        <div class="stat-number">${data.pendingPosts}</div>
+        <div class="stat-label">Posts Pending</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">${data.totalEvents}</div>
+        <div class="stat-label">Events</div>
+      </div>
+      <div class="stat-card ${data.unreadFeedback > 0 ? 'highlight' : ''}">
+        <div class="stat-number">${data.unreadFeedback}</div>
+        <div class="stat-label">Unread Feedback</div>
+      </div>
+    `;
+  } catch (err) {
+    grid.innerHTML = `<p style="color:#ef4444;">Failed to load stats.</p>`;
+  }
+}
+
+// ── EVENTS ──
+async function loadEvents() {
+  const container = document.getElementById("events");
+  container.innerHTML = `<div class="loading-state"><span class="spinner spinner-dark"></span> Loading...</div>`;
+
+  try {
+    const res    = await fetch(API_URL + "/api/events");
+    const events = await res.json();
+
+    container.innerHTML = "";
+
+    if (!events.length) {
+      container.innerHTML = `<p style="color:#9ca3af;">No events yet.</p>`;
+      return;
+    }
+
+    events.forEach(event => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <p style="font-size:0.75rem;color:#9ca3af;margin:0 0 0.3rem;">
+          📅 ${new Date(event.date).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})}
+        </p>
+        <h3 class="card-title">${event.title}</h3>
+        <p class="card-text">${event.description}</p>
+        ${event.location ? `<p style="font-size:0.78rem;color:#6b7280;">📍 ${event.location}</p>` : ""}
+        <div class="card-actions">
+          <button class="btn btn-danger btn-sm" onclick="deleteEvent('${event.id}')">Delete</button>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  } catch (err) {
+    container.innerHTML = `<p style="color:#ef4444;">Failed to load events.</p>`;
+  }
+}
+
+document.getElementById("eventForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const btn  = document.getElementById("createEventBtn");
+  btn.disabled  = true;
+  btn.innerHTML = `<span class="spinner"></span> Creating...`;
+
+  const body = {
+    title:       document.getElementById("eventTitle").value,
+    date:        document.getElementById("eventDate").value,
+    description: document.getElementById("eventDescription").value,
+    location:    document.getElementById("eventLocation").value
+  };
+
+  try {
+    const res = await authFetch("/api/admin/events", {
+      method: "POST",
+      body: JSON.stringify(body)
+    });
+
+    if (res.ok) {
+      showToast("Event created!", "success");
+      this.reset();
+      loadEvents();
+    } else {
+      const d = await res.json();
+      showToast(d.message || "Failed", "error");
+    }
+  } catch (err) {
+    showToast("Server error", "error");
+  }
+
+  btn.disabled  = false;
+  btn.innerHTML = "Create Event";
+});
+
+async function deleteEvent(id) {
+  if (!confirm("Delete this event?")) return;
+  const res = await authFetch("/api/admin/events/" + id, { method: "DELETE" });
+  if (res.ok) { showToast("Event deleted"); loadEvents(); }
+}
+
+// ── USERS ──
+async function loadUsers() {
+  const container = document.getElementById("users");
+  container.innerHTML = `<div class="loading-state"><span class="spinner spinner-dark"></span> Loading...</div>`;
+
+  try {
+    const res   = await authFetch("/api/admin/users");
+    const users = await res.json();
+
+    container.innerHTML = "";
+
+    if (!users.length) {
+      container.innerHTML = `<p style="color:#9ca3af;">No members registered yet.</p>`;
+      return;
+    }
+
+    users.forEach(user => {
+      const div = document.createElement("div");
+      div.className = "user-card";
+
+      const avatar = user.profilePicture
+        ? `<img src="${user.profilePicture}" class="user-avatar" alt="${user.name}">`
+        : `<div class="user-avatar" style="display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;color:#1a3a6e;">${user.name.charAt(0)}</div>`;
+
+      div.innerHTML = `
+        ${avatar}
+        <div style="flex:1;">
+          <p class="user-name">${user.name}</p>
+          <p class="user-email">${user.email}</p>
+          ${user.designation ? `<p style="font-size:0.75rem;color:#6b7280;">${user.designation}</p>` : ""}
+          <span class="status ${user.approved ? 'approved' : 'pending'}">${user.approved ? 'Approved' : 'Pending'}</span>
+          <div class="user-actions">
+            ${!user.approved ? `<button class="btn btn-success btn-sm" onclick="approveUser('${user.id}')">Approve</button>` : ""}
+            <button class="btn btn-danger btn-sm" onclick="deleteUser('${user.id}')">Remove</button>
+          </div>
+        </div>
+      `;
+
+      container.appendChild(div);
+    });
+  } catch (err) {
+    container.innerHTML = `<p style="color:#ef4444;">Failed to load members.</p>`;
+  }
+}
+
+async function approveUser(id) {
+  const res = await authFetch("/api/admin/users/" + id + "/approve", { method: "PUT" });
+  if (res.ok) { showToast("Member approved!", "success"); loadUsers(); loadStats(); }
+}
+
+async function deleteUser(id) {
+  if (!confirm("Remove this member?")) return;
+  const res = await authFetch("/api/admin/users/" + id, { method: "DELETE" });
+  if (res.ok) { showToast("Member removed"); loadUsers(); loadStats(); }
+}
+
+// ── POSTS ──
+let allPosts = [];
+
+async function loadPosts(statusFilter = "all") {
+  const container = document.getElementById("posts");
+  container.innerHTML = `<div class="loading-state"><span class="spinner spinner-dark"></span> Loading...</div>`;
+
+  try {
+    const res  = await authFetch("/api/admin/posts");
+    allPosts   = await res.json();
+    renderPosts(statusFilter);
+  } catch (err) {
+    container.innerHTML = `<p style="color:#ef4444;">Failed to load posts.</p>`;
+  }
+}
+
+function renderPosts(filter) {
+  const container = document.getElementById("posts");
+  const filtered  = filter === "all" ? allPosts : allPosts.filter(p => p.status === filter);
+  container.innerHTML = "";
+
+  if (!filtered.length) {
+    container.innerHTML = `<p style="color:#9ca3af;">No posts found.</p>`;
+    return;
+  }
+
+  filtered.forEach(post => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+      ${post.imageUrl ? `<img src="${post.imageUrl}" class="card-image" alt="Post image">` : ""}
+      <h3 class="card-title">${post.title}</h3>
+      <p class="card-text">${post.content.substring(0,120)}...</p>
+      <p style="font-size:0.75rem;color:#9ca3af;">✍️ ${post.authorName} · ${new Date(post.createdAt).toLocaleDateString("en-IN")}</p>
+      <span class="status ${post.status}">${post.status}</span>
+      <div class="card-actions">
+        ${post.status === "pending" ? `<button class="btn btn-success btn-sm" onclick="approvePost('${post.id}')">Approve</button>` : ""}
+        <button class="btn btn-danger btn-sm" onclick="deletePost('${post.id}')">Delete</button>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function filterPosts(status, btn) {
+  document.querySelectorAll("#tab-posts .tab-btn").forEach(b => b.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+  renderPosts(status);
+}
+
+async function approvePost(id) {
+  const res = await authFetch("/api/admin/posts/" + id + "/approve", { method: "PUT" });
+  if (res.ok) { showToast("Post approved!", "success"); loadPosts(); loadStats(); }
+}
+
+async function deletePost(id) {
+  if (!confirm("Delete this post?")) return;
+  const res = await authFetch("/api/admin/posts/" + id, { method: "DELETE" });
+  if (res.ok) { showToast("Post deleted"); loadPosts(); loadStats(); }
+}
+
+// ── GALLERY ──
+let allGallery = [];
+
+async function loadGallery(statusFilter = "all") {
+  const container = document.getElementById("gallery");
+  container.innerHTML = `<div class="loading-state"><span class="spinner spinner-dark"></span> Loading...</div>`;
+
+  try {
+    const res  = await authFetch("/api/admin/gallery");
+    allGallery = await res.json();
+    renderGallery(statusFilter);
+  } catch (err) {
+    container.innerHTML = `<p style="color:#ef4444;">Failed to load gallery.</p>`;
+  }
+}
+
+function renderGallery(filter) {
+  const container = document.getElementById("gallery");
+  const filtered  = filter === "all" ? allGallery : allGallery.filter(g => g.status === filter);
+  container.innerHTML = "";
+
+  if (!filtered.length) {
+    container.innerHTML = `<p style="color:#9ca3af;">No images found.</p>`;
+    return;
+  }
+
+  filtered.forEach(img => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+      <img src="${img.imageUrl}" class="card-image" alt="Gallery image">
+      ${img.caption ? `<p class="card-text">${img.caption}</p>` : ""}
+      <p style="font-size:0.75rem;color:#9ca3af;">📸 ${img.uploaderName}</p>
+      <span class="status ${img.status}">${img.status}</span>
+      <div class="card-actions">
+        ${img.status === "pending" ? `<button class="btn btn-success btn-sm" onclick="approveGallery('${img.id}')">Approve</button>` : ""}
+        <button class="btn btn-danger btn-sm" onclick="deleteGallery('${img.id}')">Delete</button>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function filterGallery(status, btn) {
+  document.querySelectorAll("#tab-gallery .tab-btn").forEach(b => b.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+  renderGallery(status);
+}
+
+async function approveGallery(id) {
+  const res = await authFetch("/api/admin/gallery/" + id + "/approve", { method: "PUT" });
+  if (res.ok) { showToast("Image approved!", "success"); loadGallery(); }
+}
+
+async function deleteGallery(id) {
+  if (!confirm("Delete this image?")) return;
+  const res = await authFetch("/api/admin/gallery/" + id, { method: "DELETE" });
+  if (res.ok) { showToast("Image deleted"); loadGallery(); }
+}
+
+// ── FEEDBACK ──
+async function loadFeedback() {
+  const container = document.getElementById("feedback");
+  container.innerHTML = `<div class="loading-state"><span class="spinner spinner-dark"></span> Loading...</div>`;
+
+  try {
+    const res      = await authFetch("/api/admin/feedback");
+    const messages = await res.json();
+    container.innerHTML = "";
+
+    if (!messages.length) {
+      container.innerHTML = `<p style="color:#9ca3af;">No feedback received yet.</p>`;
+      return;
+    }
+
+    messages.forEach(fb => {
+      const div = document.createElement("div");
+      div.className = "feedback-card" + (fb.isRead ? "" : " unread");
+      div.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;">
+          <div>
+            <p class="feedback-sender">${fb.name}</p>
+            <p class="feedback-email">${fb.email}</p>
+          </div>
+          ${!fb.isRead ? `<span class="status pending">Unread</span>` : `<span class="status approved">Read</span>`}
+        </div>
+        <p class="feedback-message">${fb.message}</p>
+        <p class="feedback-time">${new Date(fb.createdAt).toLocaleString("en-IN")}</p>
+        <div style="display:flex;gap:0.5rem;margin-top:0.75rem;flex-wrap:wrap;">
+          ${!fb.isRead ? `<button class="btn btn-outline btn-sm" onclick="markRead('${fb._id}', this)">Mark Read</button>` : ""}
+          <button class="btn btn-danger btn-sm" onclick="deleteFeedback('${fb._id}')">Delete</button>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  } catch (err) {
+    container.innerHTML = `<p style="color:#ef4444;">Failed to load feedback.</p>`;
+  }
+}
+
+async function markRead(id, btn) {
+  const res = await authFetch("/api/admin/feedback/" + id + "/read", { method: "PUT" });
+  if (res.ok) { showToast("Marked as read"); loadFeedback(); loadStats(); }
+}
+
+async function deleteFeedback(id) {
+  if (!confirm("Delete this feedback?")) return;
+  const res = await authFetch("/api/admin/feedback/" + id, { method: "DELETE" });
+  if (res.ok) { showToast("Feedback deleted"); loadFeedback(); }
+}
+
+// ── Init: load stats on page load ──
+loadStats();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SBC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/header.css">
+</head> 
+
+<body>
+<style>
+  /* ============ BASE ============ */
+  html {
+  scroll-behavior: smooth;
+}
+main section {
+  scroll-margin-top: 120px; /* adjust based on header+subnav height */
+}
+/* ===== IBM-STYLE SUBNAV ===== */
+
+/* TOP HOME BUTTON */
+.top-home-btn{
+  max-width: 95ch;
+  margin: 20px auto 0;
+  padding: 0 40px;
+}
+
+.top-home-btn a{
+  display: inline-block;
+  text-decoration: none;
+  color: #111827;
+  font-weight: 500;
+  border: 1px solid #e5e7eb;
+  padding: 5px 6px;
+  border-radius: 6px;
+  transition: .25s;
+}
+
+.top-home-btn a:hover{
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+.youth-modern {
+  max-width: 100ch;
+  margin: auto;
+  padding: 0 40px;
+  font-family: Inter, system-ui;
+  color: #111827;
+}
+
+/* ============ HERO ============ */
+
+.youth-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.hero-left h1 {
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.hero-left p {
+  font-size: 18px;
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  max-width: 520px;
+}
+
+.primary-btn {
+  display: inline-block;
+  padding: 14px 22px;
+  background: #2563eb;
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  border-radius: 4px;
+  transition: 0.25s;
+}
+
+.primary-btn:hover {
+  background: #1d4ed8;
+}
+
+.hero-right img {
+  width: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* ============ RECOMMENDED ============ */
+
+.recommended h2 {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  gap: 20px;
+}
+
+.card {
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.card h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.card:hover {
+  border-color: #2563eb;
+  transform: translateY(-4px);
+}
+
+.arrow {
+  display: block;
+  margin-top: 15px;
+  color: #2563eb;
+  font-size: 18px;
+}
+
+/* ============ STRUCTURE ============ */
+
+.youth-structure {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 80px;
+  padding-top: 60px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.structure-left h2 {
+  font-size: 26px;
+  margin-bottom: 15px;
+}
+
+.structure-left p {
+  color: #6b7280;
+}
+
+.structure-right ul {
+  list-style: none;
+  padding: 0;
+}
+
+.structure-right li {
+  padding: 10px 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 15px;
+}
+
+.subnav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* MOBILE NAV */
+
+@media (max-width: 768px) {
+
+  .subnav-toggle {
+    display: block;
+  }
+
+  .subnav-links {
+    position: absolute;
+    top: 48px;
+    right: 20px;
+    background: #fff;
+    flex-direction: column;
+    border: 1px solid #e5e7eb;
+    padding: 10px;
+    display: none;
+    width: 160px;
+  }
+
+  .subnav-links.show {
+    display: flex;
+  }
+
+}
+/* ===== HERO RESPONSIVE ===== */
+
+@media (max-width: 900px) {
+
+  .youth-hero {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .hero-left h1 {
+    font-size: 34px;
+  }
+
+  .hero-left p {
+    font-size: 16px;
+  }
+
+}
+@media (max-width: 900px) {
+
+  .youth-structure {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+}
+@media (max-width: 768px) {
+
+  .youth-modern {
+    padding: 40px 20px;
+  }
+
+}
+</style>
+<header class="wiki-header">
+
+<div class="nav-container">
+<div class="wiki-left">
+<button class="menu-btn" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()"></button>
+
+<img src="../images/logo.svg" class="wiki-logo" alt="Logo">
+
+<div>
+<h1 class="wiki-title">Singgimari Baptist Church</h1>
+<span class="wiki-tagline">Jokatanian Nisan</span>
+</div>
+</div>
+
+<nav class="wiki-nav">
+
+  <div class="nav-item">
+    <a href="#" class="nav-trigger">Beliefs</a>
+  </div>
+
+  <div class="nav-item">
+    <a href="#">History</a>
+  </div>
+
+  <div class="nav-item">
+    <a href="#">Contact</a>
+  </div>
+
+  <div class="nav-item">
+    <a href="write.html">Blogs</a>
+  </div>
+
+</nav>
+
+<div class="wiki-right">
+
+  <a href="#">Log-in</a>
+</div>
+
+<div id="navMenu" class="nav-menu">
+  <div class="nav-menu-inner">
+    <div class="menu-column">
+    <h4>Departments</h4>
+       <a href="../departments/mission.html">Mission</a>
+       <a href="../departments/women-ministry.html">Women Ministry</a>
+       <a href="../departments/youth-ministry.html">Youth Ministry</a>
+       <a href="../departments/men-ministry.html">Men Ministry</a>
+       <a href="../departments/education-ministry.html">Education Ministry</a>
+       <a href="../departments/finance.html">Finance</a>
+       <a href="../departments/projects.html">Projects</a>
+       <a href="../departments/construction.html">Construction</a>
+    </div>
+
+  <div class="menu-column">  
+    <h4>Association</h4>
+    <a href="#">GBC</a>
+    <a href="#">Krima-X</a>
+    <a href="#">Proposed Krima</a>
+  </div>
+
+  <div class="menu-column">
+    <h4>Feeds</h4>
+    <a href="#">Gallery</a>
+    <a href="#">Sermons</a>
+    <a href="#">Poems</a>
+    <a href="write.html">Blogs</a>
+  </div>
+ 
+  <div class="menu-column">
+    <h4>Choir</h4>
+    <a href="#">Church Choir</a>
+    <a href="#">Children's Choir</a>
+  </div>
+
+  <div class="menu-column">
+    <h4>History</h4>
+    <a href="#">Founders</a>
+    <a href="#">Branch Formation</a>
+    <a href="#">Proposed Church</a>
+    <a href="#">Establishment</a>
+  </div>
+
+  </div>
+
+</div>
+</header>
+<div class="top-home-btn">
+  <a href="../index.html">← Home</a>
+</div>
+<main class="youth-modern">
+
+  <!-- HERO SECTION -->
+  <section class="youth-hero">
+    <div class="hero-left">
+      <h2>Empowering Youth <br>Through Leadership & Literacy</h2>
+      <p style="font-size: smaller;">
+    The detailed content for ministries, departments, programs, events, and other pages will be gradually updated as official descriptions, photographs, announcements, and related materials are provided by the Pastor and church leadership. Our goal is to ensure that every section reflects the vision, mission, and heart of the church accurately and meaningfully.
+      </p>
+
+      <a href="#programs" class="primary-btn">
+        Explore Programs →
+      </a>
+    </div>
+
+    <div class="hero-right">
+      <img src="../images/general.jpg" alt="Youth activity">
+    </div>
+  </section>
+
+
+  <!-- FEATURED CARDS -->
+  <section class="recommended" id="programs">
+    <h2>Recommended for Youth</h2>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <h3>Leadership Development</h3>
+        <p>
+          Structured mentorship programs that help young members build
+          confidence, communication skills and decision-making ability.
+        </p>
+        <span class="arrow">→</span>
+      </div>
+
+      <div class="card">
+        <h3>Community Engagement</h3>
+        <p>
+          Practical involvement in outreach initiatives that promote
+          responsibility, teamwork and social awareness.
+        </p>
+        <span class="arrow">→</span>
+      </div>
+
+      <div class="card">
+        <h3>Skill & Literacy Growth</h3>
+        <p>
+         The Youth Ministry also encourages skill development and literacy among young people by creating opportunities for learning, creativity, leadership, communication, and personal growth.
+        </p>
+        <span class="arrow">→</span>
+      </div>
+
+      <div class="card">
+        <h3>Creative Expression</h3>
+        <p>
+          The Youth Ministry provides space for young people to take part in creative expression through sports, arts, music, entertainment, and other activities that encourage participation, teamwork, and personal growth.
+
+        </p>
+        <span class="arrow">→</span>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- STRUCTURED INFO SECTION -->
+  <section class="youth-structure">
+    <div class="structure-left">
+      <h2>Organized for Growth</h2>
+      <p>
+        The ministry operates through a defined leadership structure that
+        ensures clarity, accountability and consistent development planning.
+      </p>
+    </div>
+
+    <div class="structure-right">
+      <ul>
+        <li>Director – Strategic direction & coordination | <strong>Brilling M. Sangma</strong></li>
+        <li>Joint Director – Program management | <strong>Mexbredy M. Sangma</strong></li>
+        <li>Committee Members – Communication</li>
+        <li>Praise & Worship – Rsponsible for congregation worship</li>
+        <li>Fellowship Co-ordinator – Member engagement</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+ <footer>
+    <p>© 2026 Singgimari Baptist Church</p>
+    <p>
+      “Come to me, all who are weary and burdened,
+      and I will give you rest.” — Matthew 11:28
+    </p>
+  </footer>
+
+
+<script>
+function toggleMenu() {
+  const btn = document.querySelector('.menu-btn');
+  const menu = document.getElementById('navMenu');
+
+  btn.classList.toggle('active');
+  menu.classList.toggle('show');
+
+  const expanded = btn.classList.contains('active');
+  btn.setAttribute('aria-expanded', expanded);
+}
+</script>
+
+</body>
+</html>

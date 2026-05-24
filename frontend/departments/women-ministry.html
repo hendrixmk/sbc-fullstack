@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SBC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/header.css">
+</head> 
+
+<body>
+<style>
+/* ===== WOMEN MINISTRY ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+main section {
+  scroll-margin-top: 120px;
+}
+/* ===== WOMEN LOCAL NAV ===== */
+.women-modern{
+  max-width: 100ch;
+  margin: auto;
+  padding: 0 40px;
+  font-family: Inter, system-ui;
+}
+/* TOP HOME BUTTON */
+.top-home-btn{
+  max-width: 95ch;
+  margin: 20px auto 0;
+  padding: 0 40px;
+}
+
+.top-home-btn a{
+  display: inline-block;
+  text-decoration: none;
+  color: #111827;
+  font-weight: 500;
+  border: 1px solid #e5e7eb;
+  padding: 5px 6px;
+  border-radius: 6px;
+  transition: .25s;
+}
+
+.top-home-btn a:hover{
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+/* HERO */
+
+.women-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding-top: 5px;
+}
+
+.women-hero-left h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+.women-hero-left p {
+  color: #4b5563;
+  line-height: 1.6;
+  font-size: 17px;
+  margin-bottom: 25px;
+}
+
+.women-hero-right img {
+  width: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* OVERVIEW GRID */
+
+.women-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  gap: 20px;
+  margin-top: 80px;
+}
+
+.women-card {
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  transition: .25s;
+}
+
+.women-card:hover {
+  border-color: #2563eb;
+  transform: translateY(-3px);
+}
+
+.women-card h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.women-card p {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* TEAM */
+
+.women-team {
+  margin-top: 80px;
+}
+
+.women-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.women-grid li {
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+}
+
+.women-grid small {
+  display: block;
+  color: #6b7280;
+  font-size: 13px;
+}
+@media (max-width: 992px) {
+
+  .women-hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .women-hero-left h1 {
+    font-size: 34px;
+  }
+
+  .women-hero-left p {
+    font-size: 16px;
+  }
+
+}
+</style>
+<header class="wiki-header">
+
+<div class="nav-container">
+<div class="wiki-left">
+<button class="menu-btn" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()"></button>
+
+<img src="../images/logo.svg" class="wiki-logo" alt="Logo">
+
+<div>
+<h1 class="wiki-title">Singgimari Baptist Church</h1>
+<span class="wiki-tagline">Jokatanian Nisan</span>
+</div>
+</div>
+
+<nav class="wiki-nav">
+
+  <div class="nav-item">
+    <a href="#" class="nav-trigger">Beliefs</a>
+  </div>
+
+  <div class="nav-item">
+    <a href="#">History</a>
+  </div>
+
+  <div class="nav-item">
+    <a href="#">Contact</a>
+  </div>
+
+  <div class="nav-item">
+    <a href="write.html">Blogs</a>
+  </div>
+
+</nav>
+
+<div class="wiki-right">
+
+  <a href="#">Log-in</a>
+</div>
+
+<div id="navMenu" class="nav-menu">
+  <div class="nav-menu-inner">
+    <div class="menu-column">
+    <h4>Departments</h4>
+      <a href="../departments/mission.html">Mission</a>
+      <a href="../departments/women-ministry.html">Women Ministry</a>
+      <a href="../departments/youth-ministry.html">Youth Ministry</a>
+      <a href="../departments/men-ministry.html">Men Ministry</a>
+      <a href="../departments/education-ministry.html">Education Ministry</a>
+      <a href="../departments/finance.html">Finance</a>
+      <a href="../departments/projects.html">Projects</a>
+      <a href="../departments/construction.html">Construction</a>
+    </div>
+
+  <div class="menu-column">  
+    <h4>Association</h4>
+    <a href="#">GBC</a>
+    <a href="#">Krima-X</a>
+    <a href="#">Proposed Krima</a>
+  </div>
+
+  <div class="menu-column">
+    <h4>Feeds</h4>
+    <a href="#">Gallery</a>
+    <a href="#">Sermons</a>
+    <a href="#">Poems</a>
+    <a href="write.html">Blogs</a>
+  </div>
+ 
+  <div class="menu-column">
+    <h4>Choir</h4>
+    <a href="#">Church Choir</a>
+    <a href="#">Children's Choir</a>
+  </div>
+
+  <div class="menu-column">
+    <h4>History</h4>
+    <a href="#">Founders</a>
+    <a href="#">Branch Formation</a>
+    <a href="#">Proposed Church</a>
+    <a href="#">Establishment</a>
+  </div>
+
+  </div>
+
+</div>
+</header>
+<div class="top-home-btn">
+  <a href="../index.html">← Home</a>
+</div>
+<main class="women-modern">
+
+  <!-- HERO -->
+  <section class="women-hero" id="overview">
+
+    <div class="women-hero-left">
+      <h2>Empowering Women Through Leadership & Fellowship</h2>
+
+      <p style="font-size:medium;">
+        The detailed content for ministries, departments, programs, events, and other pages will be gradually updated as official descriptions, photographs, announcements, and related materials are provided by the Pastor and church leadership. Our goal is to ensure that every section reflects the vision, mission, and heart of the church accurately and meaningfully.
+      </p>
+
+      <a href="#team" class="primary-btn">
+        Meet the Team →
+      </a>
+    </div>
+
+    <div class="women-hero-right">
+      <img src="../images/simplicity.jpg" alt="Women Ministry">
+    </div>
+
+  </section>
+
+
+  <!-- PROGRAM GRID -->
+  <section class="women-overview" id="programs">
+
+    <div class="women-card">
+      <h3>Fellowship & Community</h3>
+      <p>
+        Organized gatherings that promote unity, encouragement
+        and mutual support among members.
+      </p>
+    </div>
+
+    <div class="women-card">
+      <h3>Leadership Development</h3>
+      <p>
+        Structured mentoring and coordination programs
+        to nurture capable and confident leaders.
+      </p>
+    </div>
+
+    
+
+    <div class="women-card">
+      <h3>Outreach Initiatives</h3>
+      <p>
+        Service-based activities that extend care and
+        engagement to surrounding communities.
+      </p>
+    </div>
+
+  </section>
+
+
+  <!-- LEADERSHIP -->
+  <section class="women-team" id="team leadership">
+
+    <h2>Women Ministry Leadership</h2>
+
+    <ul class="women-grid">
+
+      <li>
+        <span class="name">Renish A. Sangma</span>
+        <small>Director</small>
+      </li>
+
+      <li>
+        <span class="name">Brelidha M. Sangma</span>
+        <small>Joint Director</small>
+      </li>
+
+      <li>
+        <span class="name">Senoritha Ch. Marak</span>
+        <small>Finance Committee Member</small>
+      </li>
+
+      <li>
+        <span class="name">Dambera B. Marak</span>
+        <small>Service Associate</small>
+      </li>
+
+      <li>
+        <span class="name">Enarin Ch. Momin</span>
+        <small>Co-ordinator</small>
+      </li>
+
+    </ul>
+
+  </section>
+
+</main>
+
+ <footer>
+    <p>© 2026 Singgimari Baptist Church</p>
+    <p>
+      “Come to me, all who are weary and burdened,
+      and I will give you rest.” — Matthew 11:28
+    </p>
+  </footer>
+
+<script>
+function toggleMenu() {
+  const btn = document.querySelector('.menu-btn');
+  const menu = document.getElementById('navMenu');
+
+  btn.classList.toggle('active');
+  menu.classList.toggle('show');
+
+  const expanded = btn.classList.contains('active');
+  btn.setAttribute('aria-expanded', expanded);
+}
+</script>
+
+</body>
+</html>

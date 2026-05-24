@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Write Blog — Singgimari Baptist Church</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/write.css">
+  <style>
+    /* Redirect notice */
+    .redirect-notice {
+      max-width: 500px;
+      margin: 4rem auto;
+      text-align: center;
+      padding: 2rem;
+      background: #fafbff;
+      border: 1px solid #e0e8f5;
+      border-radius: 10px;
+    }
+    .redirect-notice h2 { color: #01143a; }
+    .redirect-notice p  { color: #6b7280; font-size: 0.9rem; }
+    .redirect-notice a  {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.4rem;
+      background: #1a3a6e;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .redirect-notice a:hover { background: #0f2549; }
+  </style>
+</head>
+<body>
+
+<header class="wiki-header">
+  <div class="nav-container">
+    <div class="wiki-left">
+      <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()"></button>
+      <img src="images/logo.svg" class="wiki-logo" alt="Logo">
+      <div>
+        <h1 class="wiki-title">Singgimari Baptist Church</h1>
+        <span class="wiki-tagline">Jokatanian Nisan</span>
+      </div>
+    </div>
+    <nav class="wiki-nav">
+      <div class="nav-item"><a href="index.html#beliefs">Beliefs</a></div>
+      <div class="nav-item"><a href="index.html#history">History</a></div>
+      <div class="nav-item"><a href="index.html#contact">Contact</a></div>
+      <div class="nav-item"><a href="blogs.html" class="blogs-btn">Blogs</a></div>
+    </nav>
+    <div class="wiki-right"><a href="login.html">Log-in</a></div>
+    <div id="navMenu" class="nav-menu"></div>
+  </div>
+</header>
+
+<main id="content">
+  <div class="redirect-notice">
+    <div style="font-size:2.5rem; margin-bottom:0.75rem;">✍️</div>
+    <h2>Write Your Blog</h2>
+    <p>
+      Blog writing has been moved into your Member Dashboard.
+      Please log in to access your writing tools, manage posts, and upload images.
+    </p>
+    <a href="member-dashboard.html">Go to Member Dashboard →</a>
+    <br>
+    <a href="login.html" style="background:transparent;color:#3b6fd4;border:1.5px solid #3b6fd4;margin-top:0.5rem;">Login First</a>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Singgimari Baptist Church</p>
+  <p>"Come to me, all who are weary and burdened, and I will give you rest." — Matthew 11:28</p>
+</footer>
+
+<script>
+function toggleMenu() {
+  const btn  = document.querySelector('.menu-btn');
+  const menu = document.getElementById('navMenu');
+  if (btn && menu) {
+    btn.classList.toggle('active');
+    menu.classList.toggle('show');
+    btn.setAttribute('aria-expanded', btn.classList.contains('active'));
+  }
+}
+
+// If already logged in as member, redirect directly
+const token = localStorage.getItem('token');
+const role  = localStorage.getItem('role');
+if (token && role === 'member') {
+  window.location.href = 'member-dashboard.html';
+}
+</script>
+</body>
+</html>

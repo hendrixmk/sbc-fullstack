@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SBC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/administration.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/events.css">
+</head> 
+
+<body>
+<header class="wiki-header">
+
+<div class="nav-container">
+<div class="wiki-left">
+<button class="menu-btn" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()"></button>
+
+<img src="images/logo.svg" class="wiki-logo" alt="Logo">
+
+<div>
+<h1 class="wiki-title">Singgimari Baptist Church</h1>
+<span class="wiki-tagline">Jokatanian Nisan</span>
+</div>
+</div>
+
+<nav class="wiki-nav">
+
+  <div class="nav-item">
+    <a href="#" class="nav-trigger">Beliefs</a>
+  </div>
+
+  <div class="nav-item">
+    <a href="#">History</a>
+  </div>
+
+  <div class="nav-item">
+    <a href="#">Contact</a>
+  </div>
+
+  <div class="nav-item">
+    <a href="blogs.html" class="blogs-btn">Blogs</a>
+  </div>
+
+</nav>
+
+<div class="wiki-right">
+
+  <a href="login.html">Log-in</a>
+</div>
+
+<div id="navMenu" class="nav-menu">
+  <div class="nav-menu-inner">
+    <div class="menu-column">
+<h4>Departments</h4>
+<a href="departments/mission.html">Mission</a>
+<a href="departments/women-ministry.html">Women Ministry</a>
+<a href="departments/youth-ministry.html">Youth Ministry</a>
+<a href="departments/men-ministry.html">Men Ministry</a>
+<a href="departments/education-ministry.html">Education Ministry</a>
+<a href="departments/finance.html">Finance</a>
+<a href="departments/projects.html">Projects</a>
+<a href="departments/construction.html">Construction</a>
+    </div>
+
+  <div class="menu-column">  
+    <h4>Association</h4>
+    <a href="#">GBC</a>
+    <a href="#">Krima-X</a>
+    <a href="#">Proposed Krima</a>  
+  </div>
+
+  <div class="menu-column">
+    <h4>Feeds</h4>
+    <a href="#">Gallery</a>
+    <a href="#">Sermons</a>
+    <a href="#">Poems</a>
+    <a href="blogs.html">Blogs</a>
+  </div>
+ 
+  <div class="menu-column">
+    <h4>Choir</h4>
+    <a href="#">Church Choir</a>
+    <a href="#">Children's Choir</a>
+  </div>
+
+  <div class="menu-column">
+    <h4>History</h4>
+    <a href="#">Founders</a>
+    <a href="#">Branch Formation</a>
+    <a href="#">Proposed Church</a>
+    <a href="#">Establishment</a>
+  </div>
+
+  </div>
+
+</div>
+</header>
+
+  <main id="content">
+
+    <section id="services">
+      <h2 style="
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(120deg, #040033, #457cf3, #2d3681);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  background-clip: text;
+  margin-bottom: 1rem;
+">
+Singgimari Baptist Church
+</h2>
+
+      <p><strong>Sunday Worship:</strong><span class="term"> 10:00 AM</span></p>
+      <p><strong>Location:</strong> Selsella Singgimari, West Garo Hills, Meghalaya <small>(Not to be confused with another Singimari 
+        which lies in border betweeen
+         Meghalaya & Assam)</small></p>
+    <strong>Office Hours:</strong><span class="term"> 10:00 AM - 3:00 PM</span><small> <i>Monday to Saturday</i></small></p> 
+      </p>
+        <p style="color: #7c8880;">
+        The Church Office serves as the central point for information, 
+        coordination, and assistance for members and visitors.
+        Visitors may contact or visit the office during working hours,
+        for related matters.
+         <p>
+    </section>
+
+    <section id="structure">
+  <h2>Association and Fellowship </h2>
+
+  <p>
+    Singgimari Baptist Church is part of a wider fellowship
+    within the Garo Baptist Convention.
+  </p>
+
+  <ul>
+    <li class="with-logo">
+      <img src="images/gbc.png" alt="GBC Logo" class="li-logo">
+     <a href="https://gbcnei.org/"><strong>Garo Baptist Convention</strong></a>
+      <small>The central fellowship body of Garo Baptist churches.</small>
+
+      <ul>
+        <li>
+          <strong>Krimas</strong>
+          <small>Regional fellowships formed under the Convention.</small>
+
+          <ul>
+            <li class="with-logo">
+              <img src="images/krimaX.png" alt="GBC Logo" class="li-logo">
+              <strong>Krima-X </i></strong>
+              <small>The Krima to which our church belongs. <i>(Krima No. 10)</i></small>
+
+              <ul>
+                <li class="with-logo">
+                  <img src="images/singgimaribaptistchurch.png" alt="GBC Logo" class="li-logo">
+               <strong>Singgimari Baptist Church</strong>
+                  <small>A local church within this Krima fellowship. Establishment year 2022</small>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+<section class="countdown-section">
+        <div id="next-event-countdown"></div>
+    </section>
+    
+    <section id="beliefs">
+      <h2>What We Believe</h2>
+      <p>Our beliefs are rooted in the Bible and Baptist doctrine.
+        </p>
+        <ul>
+        <li>We affirm faith in one God, revealed as Father, Son, and Holy Spirit.</li>
+        <li>We believe the Bible is the inspired and authoritative Word of God, 
+        guiding us in faith, truth, and daily life.</li>
+        <li>We believe redemption comes through God’s grace, received by faith in Christ.</li>
+        <li>We recognize the Church as Christ’s body, called to worship, serve, and witness.</li>
+        <li>We hold to biblical teaching and place Jesus Christ at the center of all we believe and live.</li>
+        </ul>
+    </section>
+
+    <section class="events-section">
+      <h2>Upcoming Events</h2>
+        <div id="events-container" class="grid"></div>
+    </section>
+
+    <section class="blog-strip">
+  <div class="blog-strip-inner">
+    <div class="blog-strip-text">
+      <h2>Discover Our Latest Blogs</h2>
+      <p>Insights, tutorials, and updates from our growing community.</p>
+    </div>
+
+    <a href="blogs.html" class="blog-strip-link">
+      Visit Blogs →
+    </a>
+  </div>
+</section>
+
+
+    <section id="staff">
+      <h2>Office Staffs</h2>
+      <p>Our church is served by a dedicated team called to lead.</p>
+      <div class="table-wrapper">
+      <table>
+        <thead>
+          <th scope="col">#.</th>
+          <th scope="col">Name</th>
+          <th scope="col">Designation</th>
+          <th scope="col">Contact</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>1.</th>
+          <td>Mr. Tengsan A. Sangma</td>
+          <td>Pastor</td>
+          <td>+91-9863204803</td>
+        </tr>
+        <tr>
+          <td>2.</td>
+          <td>Mr. Hebalson Marak</td>
+          <td>Associate Pastor</td>
+          <td>+91-9863204803</td>
+        </tr>
+        <tr>
+          <td>3.</td>
+          <td>Mr. Lawrence N. Marak</td>
+          <td>Associate Pastor</td>
+          <td>+91-9863204803</td>
+        </tr>
+        <tr>
+          <td>4.</td>
+          <td>Mrs. Renish A. Sangma</td>
+          <td>Women Director</td>
+          <td>+91-9863204803</td>
+        </tr>
+        <tr>
+          <td>5.</td>
+          <td>Mrs. Brelidha M. Sangma</td>
+          <td>Women Joint Director</td>
+          <td>+91-9863204803</td>
+        </tr>
+        <tr>
+          <td>6.</td>
+          <td>Mr. Brelling M. Sangma</td>
+          <td>Youth Director</td>
+          <td>+91-9863204803</td>
+        </tr>
+        <tr>
+          <td>7.</td>
+          <td>Mr. Mexbredy M. Sangma</td>
+          <td>Youth Joint Director</td>
+          <td>+91-9863204803</td>
+        </tr>
+        <tr>
+          <td>8.</td>
+          <td>Mr. Metchen M. Sangma</td>
+          <td>Accountant</td>
+          <td>+91-9863204803</td>
+        </tr>
+        <tr>
+          <td>9.</td>
+          <td>Mrs. Rollina A. Sangma</td>
+          <td>Treasurer</td>
+          <td>+91-9863204803</td>
+        </tr>
+        <tr>
+          <td>10.</td>
+          <td>Mr. Rongseng A. Sangma</td>
+          <td>Worship Secretary</td>
+          <td>+91-9863204803</td>
+        </tr>
+        <tr>
+          <td>11.</td>
+          <td>Mr. Tesreng Sangma</td>
+          <td>Chawkidar</td>
+          <td>+91-9863204803</td>
+        </tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+<!--Paragraph with picture-->
+ <section class="content-section" aria-labelledby="pictures-title">
+
+  <h2 id="pictures-title">In Grateful Recognition</h2>
+
+  <div class="two-column">
+
+    <figure class="media">
+      <img src="images/office.jpg" alt="Pastor working at the office">
+      <figcaption>
+       Tengsan A. Sangma,  Pastor Singgimari Baptist Church
+      </figcaption>
+    </figure>
+
+    <div class="content">
+      <p>
+        The office staff ensure that the ministries and activities of the church function smoothly. 
+        We are sincerely grateful to our committed staff members whose quiet and
+        consistent work strengthens our community.
+      </p>
+
+      <p>
+     With gratitude, we acknowledge the dedication of those who serve 
+     diligently each day, offering their time and abilities for 
+     the growth and unity of the church.
+     </p>
+     <p>Their service is not merely 
+     administrative work, but a meaningful contribution to the life
+      and witness of our congregation.
+      </p>
+    </div>
+
+  </div>
+</section> 
+    
+  <section id="history">
+  <h2>History of Church and the Community</h2>
+<details>
+  <summary><strong>5 minute Read</strong></summary>
+  <p>
+    The church has a recorded history that reflects its establishment, growth, and organizational development over time.
+  </p>
+  
+  <ul>
+    <li>
+      <strong>Pre-1926</strong> – In the years before 1926, the soil of Singgimari
+      <small><i>known as Nepal Ading</i></small> was home to Nepalese families.
+      <ul>
+        <li>
+          During this time, no Garo families had yet settled in the area, and the
+          message of the Gospel through our traditions had not yet arrived.
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>1926 to 1930</strong> – The Lord guided our forefathers from various
+      regions across the Garo Hills to this place.
+      <ul>
+        <li>
+          In 1926, Nudan R. Marak and Rangmi A. Sangma
+          <small>(Rutmoni Pa)</small>, <i>husband and wife</i>, migrated from
+          Chokpot Bibagre and took shelter for several years at Dengasi Village,
+          staying with Rangmi’s brother-in-law, Rangkil. In 1930, they moved to
+          Singgimari in search of agricultural land for cultivation and permanent
+          settlement.
+        </li>
+        <li>
+          By 1934, others joined them, including Jiran Rema
+          <small>(Ameng Pa)</small>, Rengdi Marak, Tina
+          <small>(Bijon Pa)</small> from Samanda, Mohan Ch. Marak, and Ramsi A.
+          Sangma <small>(Repol Pa)</small> from Karukol.
+        </li>
+        <li>
+          Later, Prem Pantho <small>(Lemon Pa)</small> and his <i>wife</i> Gajak
+          Ch. Marak, along with Singdon <small>(Nangjeng Pa)</small>, Kanjing
+          <small>(Mehal Pa)</small>, and Sese B. Marak from different parts of the
+          Garo Hills, gathered and began living together as one united community.
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>1934</strong> – Moved by a hunger for fellowship, these forefathers
+      raised the first house of worship in Singgimari.
+      <ul>
+        <li>
+          The first generation who laid the foundation of the church in
+          Singgimari provided both spiritual leadership and practical service.
+        </li>
+        <li>The pioneers of this generation were:
+          <ul class="three-column-list">
+            <li>Dingsan N. Marak <small>(Sunil Pa)</small></li>
+            <li>Kanjing Sangma <small>(Mehal Pa)</small></li>
+            <li>Singdon Sangma <small>(Nangjeng Pa)</small></li>
+          </ul>
+        </li>
+        <li>
+          They remained steadfast in prayer for four years, but the congregation
+          was unable to sustain itself, and the doors eventually closed.
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>1964</strong> – The spirit of revival moved once again. For a second
+      time, a dedicated effort was made to re-establish the church.
+      <ul>
+        <li>
+          The church came into being on land given by Sajing Sangma and was opened
+          with prayer in the presence of Bithindro A. Sangma,
+          <small><i>Pastor, Selsella Baptist Church</i></small>.
+        </li>
+        <li>The pioneers of the 2nd generation were:
+          <ul class="three-column-list">
+            <li>Nangjeng Marak <small>(Premosh Pa)</small></li>
+            <li>Ibang B. Marak <small>(Linder Pa)</small></li>
+            <li>Kanai M. Marak <small>(Jorina Pa)</small></li>
+            <li>Samson T. Sangma <small>(Modil Pa)</small></li>
+            <li>Kanjing Sangma <small>(Mehal Pa)</small></li>
+          </ul>
+        </li>
+        <li>
+          This effort did not continue successfully in the years that followed.
+          As a result, the church again became inactive, marking the second
+          failure to sustain organized church life during that period.
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>1985</strong> – The third generation, under the leadership of
+      Loru Ch. Marak, renewed outreach and personal engagement with neighboring
+      families, leading to the rebuilding of the church at the former site given
+      by Sajing Sangma and Silme B. Marak.
+      <ul>
+        <li>Pioneers of the 3rd generation were:
+          <ul class="three-column-list">
+            <li>Loru Ch. Marak</li>
+            <li>Samson T. Sangma</li>
+            <li>Wilson R. Marak</li>
+            <li>Ibang B. Marak</li>
+            <li>Helen T. Sangma</li>
+            <li>Ramesh M. Marak</li>
+            <li>Mirendra Ch. Marak</li>
+            <li>Premosh A. Sangma</li>
+            <li>Uselna T. Sangma</li>
+            <li>Lemoni Ch. Marak</li>
+            <li>Bimoni Ch. Marak</li>
+            <li>Lindarson A. Sangma</li>
+            <li>Hebalson T. Sangma</li>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>These leaders had a shared vision for the future of the church and the community,
+           and through faithful service and unity, they laid the foundation for a permanent church building.</li>
+      </ul>
+      <ul>
+        <li>On 26/05/1985, our church building was inaugurated by Heavinson A. Sangma under 
+          the theme “Torom Nokni Gamchatani,”<small>The Sacred Worth of the House of Prayer</small> drawn from Isaiah 56:7, and by the guidance of the Holy Spirit, 
+          our church continues to stand today as generations gather to worship Almighty God.</li>
+      </ul>
+      <li>
+        <strong>1998</strong> – The Singgimari community church held a meeting on 17/10/1998
+         and approved a proposal to become a branch of Selsella Baptist Church (Headquarters) under 
+         the leadership of Mr. Milbathson M. Sangma<small> Associate Pastor</small> and Principal Ch. Marak<small> Secretary</small>.
+      </li>
+      <ul>
+        <li>As part of the ongoing process, the approved records and draft proposal 
+          letters were placed before the 12th Mamong Branch,
+           Roll Soba on 13/12/1998 for consideration and review.</li>
+      </ul>
+      <li>
+        <strong>1999</strong> – During the 39th Mondoli Krima Soba, Headquarter<small> Selsella Baptist Church</small> organized 
+        <i>Achik Baptist Singgimari Bipek</i><small> Branch</small> as a branch of Selsella Baptist Church, 
+        marking an important step in the church’s growth and fellowship.
+      </li>
+      <ul>
+        <li>Pioneers of the Bipek<small> Branch</small> Formation:</li>
+        <ul>
+          <li><strong>General Group:</strong> 
+            Mr. Ibang B. Marak<small> Formerly Pastor</small>, 
+            Mr. Milbathson M. Sangma<small> Associate Pastor</small>, 
+            Mr. Principal Ch. Marak<small> Secretary</small>,
+            Mr. Wilson R. Marak<small> Accountant</small>,
+            Mrs. Euselna T. Sangma<small> Treasury</small>.
+          </li>
+        </ul>
+        <ul>
+          <li><strong>Women's Group:</strong> 
+            Mrs. Bulbulla T. Sangma<small> Chairman</small>, 
+            Mrs. Merrytasilla Ch. Marak<small> Secretary</small>, 
+            Mrs. Tutha D. Shira<small> Accountant</small>,
+            Mrs. Jorina M. Sangma<small> Treasury</small>,
+            Mrs. Bimoni Ch. Marak<small> Work Secretary</small>.
+          </li>
+        </ul>
+        <ul>
+          <li><strong>BYF Group</strong> 
+            Mr. Tarseng A. Sangma<small> Chairman</small>, 
+            Mr. Jeremiah A. Sangma<small> V/Chairman</small>, 
+            Mrs. Mickrosina A. Sangma<small> Secretary</small>,
+            Mrs. Salchi A. Sangma<small> Joint Secretary</small>,
+            Mr. Operastar A. Sangma<small> Accountant</small>,
+            Mrs. Renish A. Sangma<small> Treasury</small>,
+            Mr. Henith M. Marak<small> Work Secretary</small>.
+          </li>
+        </ul>
+        <ul>
+          <li><strong>Pillars:</strong> 
+            Mr. Horendro A. Sangma, Mr, Ramesh M.Marak, Mr. Premitson Marak, Mr. Rajaram Rema, Mr. Junestar A. Sangma, 
+            Mrs. Lemony Ch. Marak, Mrs. Premosh A. Sangma, Mrs. Emprojini A. Sangma, Mrs. Tutha D. Shira,
+            Mrs. Jorina M. Marak, Mrs. Neheny A. Sangma, Mrs. Bimoni Ch. Marak.
+          </li>
+        </ul>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+    
+<section id="administration">
+    <h2>Church Administration Structure</h2>
+<details><summary><strong>Click to View the Structure</strong></summary>
+  <p>
+    The church functions through shared leadership, administration and service.
+  </p>
+
+  <ul class="tree">
+    <li>
+      <strong>1. Pastors</strong>
+      <ul>
+        <li>Tengsan A. Sangma <i>Pastor</i><strong><small> (Head of the Church Administration)</small></strong>
+        </li>
+        <li>Lawrence N. Marak <small>Associate Pastor I</small></li>
+        <li>Hebalson N. Marak <small>Associate Pastor II</small></li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>2. Ministries</strong>
+      <ul>
+        <li>
+          <strong>Men Ministry</strong>
+          <ul>
+            <li>Tengsan A. Sangma <small>Director</small></li>
+            <li>Darseng Fair S. Momin <small>Joint Director</small></li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>Women Ministry</strong>
+          <ul>
+            <li>Renish A. Sangma <small>Director</small></li>
+            <li>Brellidha M. Sangma <small>Joint Director</small></li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>Youth Ministry</strong>
+          <ul>
+            <li>Brilling M. Sangma <small>Director</small></li>
+            <li>Mexbredy M. Sangma <small>Joint Director</small></li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>Christian Education Ministry</strong>
+          <ul>
+            <li>Mr. Tengsan A. Sangma <small>Director</small></li>
+            <li>Mr. Lip B. Marak <small>Sunday School Teacher</small></li>
+            <li>Mr. Soljeng M. Sangma <small>Sunday School Teacher</small></li>
+            <li>Mrs. Jaksrame A. Sangma <small>Sunday School Teacher</small></li>
+            <li>Mrs. Traciana Ch. Marak <small>Sunday School Teacher</small></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>3. Board of Deacons</strong>
+      <ul>
+        <li>Principal Ch. Marak <small>Chairman</small></li>
+        <li>Mr. Lawrence N. Marak <small>Member</small></li>
+        <li>Mr. Hebal N. Marak <small>Member</small></li>
+        <li>Mr. Marshington A. Sangma <small>Member</small></li>
+        <li>Mr. Polwin Ch. Marak <small>Member</small></li>
+        <li>Mr. Darsengfair S. Momin <small>Member</small></li>
+        <li>Mr. Metchen Sangma <small>Member</small></li>
+        <li>Mrs. Josthina Ch. Marak <small>Member</small></li>
+        <li>Mrs. Presilla B. Marak <small>Member</small></li>
+        <li>Mrs. Rollina A. Sangma <small>Member</small></li>
+        <li>Msr. Nilmalla Ch. Marak <small>Member</small></li>
+        <li>Mrs. Merrytasilla Ch. Marak <small>Member</small></li>
+        <li>Mrs. Niksera M. Sangma <small>Member</small></li>
+        <li>Mrs. Renish A. Sangma <small>Member</small></li>
+      </ul>
+    </li>
+    <li>
+      <strong>4. Mission</strong>
+      <ul>
+        <li>Mr. Tengsan A. Sangma <small>Mission Incharge</small></li>
+        <li>Mr. Marshington A. Sangma <small>Chairman</small></li>
+        <li>Mr. Lawrence N. Marak <small>Member</small></li>
+        <li>Mr. Brilling M. Sangma <small>Member</small></li>
+        <li>Mrs. Nilmalla Ch. Marak <small>Member</small></li>
+        <li>Mrs. Presilla B. Marak <small>Member</small></li>
+        <li>Mrs. Kalche A. Sangma <small>Member</small></li>
+        <li>Mrs. Gremoline T. Sangma <small>Member</small></li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>5. Finance</strong>
+      <ul>
+        <li>Metchen M. Sangma <small>Accountant</small></li>
+        <li>Mrs. Rollina A. Sangma <small>Treasurer</small></li>
+        <li>Committees
+          <ul><li>Mr. Jakrik M. Sangma <small>Convener</small></li></ul>
+          <ul><li>Mr. Brilling M. Sangma <small>Member</small></li></ul>
+          <ul><li>Mrs. Renish A. Sangma <small>Member</small></li></ul>
+          <ul><li>Mrs. Senoritha Ch. Marak <small>Member</small></li></ul>
+        </li>
+        <li>Audit
+          <ul><li>Mrs. Jostina Ch. Marak <small>Convener</small></li></ul>
+          <ul><li>Mrs. Nilmalla Ch. Marak <small>Member</small></li></ul>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>6. Volunteer & Support Team</strong>
+      <small>Various church activities and services.</small>
+      <ul>
+        <li>Donors</li>
+        <li>Facilities and Maintenance Teams</li>
+        <li>Logistics and Setups</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>7. Congregational Members</strong>
+      <ul>
+        <li>All members enrolled and united in/by one church<small> Singgimari Baptist Church</small></li>
+      </ul>
+    </li>
+  </ul>
+</details>
+</section>
+
+
+   <section id="contact">
+  <h2>Contact</h2>
+
+  <div class="contact-layout">
+    <address>
+      <p>
+        <strong>Singgimari Baptist Church</strong><br>
+         State: Meghalaya <br>
+         District: West Garo Hills<br>
+         Pin Code: 794105
+      </p>
+
+      <p>
+        Phone:
+        <a href="tel:+919876543210">+91 98765 43210</a><br>
+        Email:
+        <a href="mailto:singgimaribaptist@gmail.com">
+          singgimaribaptist@gmail.com
+        </a>
+      </p>
+    </address>
+
+    <figure>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6712.691705392022!2d90.0126153672885!3d25.693580851153822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3758006c73130689%3A0x9317a23a65b99cb9!2sSinggimari%20Baptist%20Church!5e0!3m2!1sen!2sin!4v1769539104011!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <figcaption><center>Location of Singgimari Baptist Church</center></figcaption>
+</figure>
+  </div>
+</section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Singgimari Baptist Church</p>
+    <p>
+      “Come to me, all who are weary and burdened,
+      and I will give you rest.” — Matthew 11:28
+    </p>
+  </footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

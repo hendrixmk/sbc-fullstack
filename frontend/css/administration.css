@@ -1,0 +1,64 @@
+/* ================================
+   Church Administration Grid
+   ================================ */
+
+#administration .tree {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem 3rem;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* Keep top-level blocks intact */
+#administration .tree > li {
+  break-inside: avoid;
+}
+
+/* Nested lists */
+#administration .tree ul {
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  padding-left: 0.90    rem;
+  list-style: disc;
+  border-left: 1px solid rgba(250, 78, 10, 0.274);
+}
+
+/* List spacing */
+#administration li {
+  margin-bottom: 0.5rem;    
+}
+/*Breathing Colours*/
+#administration li {
+  animation: deepSeaBreath 3s infinite ease-in-out;
+}
+
+@keyframes deepSeaBreath {
+  0% {
+    color: rgb(3, 25, 45);   /* darker abyss */
+  }
+
+  50% {
+    color: rgb(0, 130, 190); /* brighter ocean crest */
+  }
+
+  100% {
+    color: rgb(3, 25, 45);
+  }
+}
+/* Responsive: single column on small screens */
+@media (max-width: 900px) {
+  #administration .tree {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Optional: 3 columns on large screens */
+@media (min-width: 1200px) {
+  #administration .tree {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+

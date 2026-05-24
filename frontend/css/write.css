@@ -1,0 +1,65 @@
+/* ---- Write page main layout ---- */
+main {
+  margin-block: 2.5rem;
+}
+
+/* ---- Heading ---- */
+main h1 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ---- Form ---- */
+form {
+  max-width: 60ch; /* keeps writing comfortable */
+}
+
+/* Labels behave like paragraphs */
+form input,
+form select,
+form textarea {
+  display: block;
+  width: 100%;
+
+  padding: 0.5rem 0.6rem;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+
+  color: inherit;
+  background-color: #fff;
+  border: 1px solid #ccc;
+
+  box-sizing: border-box;
+}
+
+
+/* Writing area should feel generous */
+form textarea {
+  min-height: 12rem;
+  resize: vertical;
+}
+
+/* ---- Button ---- */
+form button {
+    margin-top: 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5rem 1.25rem;
+
+  background: none;
+  color: #022241;
+  border: 1px solid #022241;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: rgba(2, 34, 65, 0.05);
+}
+
+/* ---- Status message ---- */
+#status {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}

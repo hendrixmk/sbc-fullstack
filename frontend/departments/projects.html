@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SBC – Projects Committee</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<body>
+<style>
+
+/* ── HOME BUTTON — UNTOUCHED ─────────────────────────────── */
+.top-home-btn{max-width:90ch;margin:0 auto 0;padding:0 25px;}
+.top-home-btn a{display:inline-block;text-decoration:none;color:#111827;font-weight:500;border:1px solid #e5e7eb;padding:5px 6px;border-radius:6px;transition:.25s;}
+.top-home-btn a:hover{background:#2563eb;color:white;border-color:#2563eb;}
+
+/* ── VARS ────────────────────────────────────────────────── */
+:root{
+  --bg        :#f7f7f5;
+  --surface   :#ffffff;
+  --border    :#e4e2dc;
+  --sage      :#4a7c59;
+  --sage-light:#e8f0eb;
+  --sage-mid  :#b8d4c0;
+  --ink       :#1a1a18;
+  --ink-mid   :#3d3d38;
+  --ink-light :#88877f;
+  --rule      :#dddbd4;
+  --fh        :'Open Sans', system-ui, sans-serif;
+  --fb        :'Open Sans',
+               system-ui,
+               -apple-system,
+               BlinkMacSystemFont,
+               "Segoe UI";
+}
+
+.proj-page{font-family:var(--fb);background:var(--bg);color:var(--ink);padding:60px 24px 96px;}
+.proj-inner{max-width:90ch;margin-inline:auto;}
+
+/* HERO */
+.proj-hero{
+  display:grid;
+  grid-template-columns:1fr 80px;
+  align-items:start;
+  gap:24px;
+  padding-bottom:32px;
+  border-bottom:1.5px solid var(--rule);
+  margin-bottom:52px;
+}
+.proj-eyebrow{font-size:.68rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--sage);margin:0 0 10px;}
+.proj-hero h1{font-family:var(--fh);font-size:clamp(2.1rem,5vw,3rem);font-weight:400;line-height:1.1;margin:0 0 14px;letter-spacing:-.4px;}
+.proj-hero h1 em{font-style:italic;color:var(--sage);}
+.proj-intro{font-size:.96rem;font-weight:300;color:var(--ink-mid);line-height:1.82;max-width:56ch;margin:0;}
+.proj-badge{
+  width:72px;height:72px;border-radius:50%;
+  background:var(--sage-light);border:1.5px solid var(--sage-mid);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  flex-shrink:0;
+}
+.proj-badge svg{width:24px;height:24px;stroke:var(--sage);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.proj-badge span{font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);}
+
+/* SECTION LABEL */
+.sec-label{
+  font-size:.67rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--ink-light);margin:0 0 20px;
+  display:flex;align-items:center;gap:12px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+
+/* MANDATE GRID */
+.mandate-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  margin-bottom:52px;
+}
+.mandate-item{background:var(--surface);padding:26px 22px;}
+.mandate-num{font-family:var(--fh);font-size:2.2rem;color:var(--sage-mid);line-height:1;margin-bottom:10px;}
+.mandate-title{font-size:.82rem;font-weight:600;color:var(--ink);margin-bottom:6px;}
+.mandate-desc{font-size:.79rem;font-weight:300;color:var(--ink-light);line-height:1.68;}
+
+/* INITIATIVES TABLE */
+.init-section{margin-bottom:52px;}
+.init-wrap{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.init-table{width:100%;border-collapse:collapse;}
+.init-table th{
+  font-size:.67rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-light);text-align:left;padding:12px 18px;
+  background:var(--sage-light);border-bottom:1.5px solid var(--sage-mid);
+}
+.init-table td{
+  padding:15px 18px;font-size:.87rem;font-weight:400;color:var(--ink-mid);
+  border-bottom:1px solid var(--rule);vertical-align:middle;
+}
+.init-table tbody tr:last-child td{border-bottom:none;}
+.init-table tbody tr{transition:background .15s;}
+.init-table tbody tr:hover td{background:#f2f6f3;}
+.td-name{font-weight:500;color:var(--ink);}
+.badge-status{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:.72rem;font-weight:500;padding:3px 10px;border-radius:20px;
+}
+.st-active  {background:#dcf5e4;color:#1a6640;}
+.st-planning{background:#fff4dc;color:#7a5200;}
+.st-proposed{background:#eeebff;color:#4a3a8a;}
+.badge-dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;}
+
+/* TIMELINE */
+.timeline-section{margin-bottom:52px;}
+.timeline{position:relative;padding-left:30px;}
+.timeline::before{
+  content:'';position:absolute;left:6px;top:8px;bottom:8px;
+  width:1.5px;background:linear-gradient(to bottom,var(--sage),var(--sage-mid) 60%,var(--border));
+}
+.tl-item{position:relative;margin-bottom:30px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{
+  position:absolute;left:-32px;top:5px;
+  width:13px;height:13px;border-radius:50%;
+  border:2px solid var(--sage);background:var(--surface);
+}
+.tl-item.done .tl-dot{background:var(--sage);}
+.tl-item.future .tl-dot{border-color:var(--border);background:var(--bg);}
+.tl-period{font-size:.67rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-light);margin-bottom:4px;}
+.tl-title{font-family:var(--fh);font-size:1.05rem;color:var(--ink);margin-bottom:5px;font-weight:400;}
+.tl-body{font-size:.83rem;font-weight:300;color:var(--ink-light);line-height:1.68;max-width:58ch;}
+
+/* MEMBERS */
+.members-section{margin-bottom:52px;}
+.members-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(176px,1fr));gap:10px;}
+.member-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:8px;
+  padding:16px 14px;display:flex;align-items:center;gap:12px;
+  transition:border-color .2s;
+}
+.member-card:hover{border-color:var(--sage-mid);}
+.member-av{
+  width:38px;height:38px;flex-shrink:0;border-radius:50%;
+  background:var(--sage-light);display:flex;align-items:center;justify-content:center;
+  font-family:var(--fh);font-size:1rem;color:var(--sage);
+}
+.member-name{font-size:.84rem;font-weight:500;color:var(--ink);margin-bottom:2px;line-height:1.2;}
+.member-role{font-size:.71rem;font-weight:400;color:var(--ink-light);}
+
+/* SCRIPTURE */
+.scripture-block{
+  border-left:3px solid var(--sage);padding:18px 22px;
+  background:var(--sage-light);border-radius:0 8px 8px 0;
+}
+.scripture-block p{font-family:var(--fh);font-style:italic;font-size:1.05rem;color:var(--sage);margin:0 0 6px;line-height:1.6;}
+.scripture-block cite{font-family:var(--fb);font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);opacity:.65;}
+
+</style>
+
+<!-- ══════════════ HEADER — UNTOUCHED ════════════════════ -->
+<header class="wiki-header">
+  <div class="nav-container">
+    <div class="wiki-left">
+      <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()"></button>
+      <img src="../images/logo.svg" class="wiki-logo" alt="Logo">
+      <div>
+        <h1 class="wiki-title">Singgimari Baptist Church</h1>
+        <span class="wiki-tagline">Jokatanian Nisan</span>
+      </div>
+    </div>
+    <nav class="wiki-nav">
+      <div class="nav-item"><a href="#" class="nav-trigger">Beliefs</a></div>
+      <div class="nav-item"><a href="#">History</a></div>
+      <div class="nav-item"><a href="#">Contact</a></div>
+      <div class="nav-item"><a href="blogs.html" class="blogs-btn">Blogs</a></div>
+    </nav>
+    <div class="wiki-right"><a href="login.html">Log-in</a></div>
+    <div id="navMenu" class="nav-menu">
+      <div class="nav-menu-inner">
+        <div class="menu-column">
+          <h4>Departments</h4>
+          <a href="../departmens/mission.html">Mission</a>
+          <a href="../departments/women-ministry.html">Women Ministry</a>
+          <a href="../departments/youth-ministry.html">Youth Ministry</a>
+          <a href="../departments/men-ministry.html">Men Ministry</a>
+          <a href="../departments/education-ministry.html">Education Ministry</a>
+          <a href="../departments/finance.html">Finance</a>
+          <a href="../departments/projects.html">Projects</a>
+          <a href="../departments/construction.html">Construction</a>
+        </div>
+        <div class="menu-column">
+          <h4>Association</h4>
+          <a href="#">GBC</a><a href="#">Krima-X</a><a href="#">Proposed Krima</a>
+        </div>
+        <div class="menu-column">
+          <h4>Feeds</h4>
+          <a href="#">Gallery</a><a href="#">Sermons</a><a href="#">Poems</a>
+          <a href="blogs.html" class="menu-blogs-btn">Blogs</a>
+        </div>
+        <div class="menu-column">
+          <h4>Choir</h4>
+          <a href="#">Church Choir</a><a href="#">Children's Choir</a>
+        </div>
+        <div class="menu-column">
+          <h4>History</h4>
+          <a href="#">Founders</a><a href="#">Branch Formation</a>
+          <a href="#">Proposed Church</a><a href="#">Establishment</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<!-- ══════════════ MAIN ═══════════════════════════════════ -->
+ 
+<main class="proj-page">
+    
+  <div class="proj-inner">
+
+    <!-- Hero -->
+    <div class="proj-hero">
+      <div>
+        <p class="proj-eyebrow">Committee · Singgimari Baptist Church</p>
+        <h1>Projects <em>Committee</em></h1>
+        <p class="proj-intro">The Projects Committee gives shape to the church's future — planning long-term developments, ongoing programs, and ensuring every initiative aligns with the mission of Singgimari Baptist Church.</p>
+      </div>
+      <div class="top-home-btn"><a href="../index.html">Home</a></div>
+      <div class="proj-badge">
+        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        <span>Projects</span>
+      </div>
+    </div>
+
+    <!-- Mandate -->
+    <p class="sec-label">Our Mandate</p>
+    <div class="mandate-grid">
+      <div class="mandate-item">
+        <div class="mandate-num">01</div>
+        <div class="mandate-title">Planning Future Developments</div>
+        <div class="mandate-desc">Identifying and designing initiatives that expand the church's capacity to serve its congregation and broader community in the years ahead.</div>
+      </div>
+      <div class="mandate-item">
+        <div class="mandate-num">02</div>
+        <div class="mandate-title">Ongoing Programs & Initiatives</div>
+        <div class="mandate-desc">Coordinating active church programs — ensuring they are properly resourced, on schedule, and delivering meaningful impact.</div>
+      </div>
+      <div class="mandate-item">
+        <div class="mandate-num">03</div>
+        <div class="mandate-title">Coordination & Reporting</div>
+        <div class="mandate-desc">Maintaining clear communication between departments, the Finance Committee, and the Church Council on all active and proposed projects.</div>
+      </div>
+    </div>
+
+    <!-- Initiatives -->
+    <div class="init-section">
+      <p class="sec-label">Current Initiatives</p>
+      <div class="init-wrap">
+        <table class="init-table">
+          <thead>
+            <tr>
+              <th>Initiative</th>
+              <th>Category</th>
+              <th>Timeline</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="td-name">Singgimari Dugout pond</span></td>
+              <td>Development</td>
+              <td>2025 – 2028</td>
+              <td><span class="badge-status st-active"><span class="badge-dot"></span>Active</span></td>
+            </tr>
+            <tr>
+              <td><span class="td-name">Fishery Pond</span></td>
+              <td>Project</td>
+              <td>Long term</td>
+              <td><span class="badge-status st-active"><span class="badge-dot"></span>Active</span></td>
+            </tr>
+            <tr>
+              <td><span class="td-name">Singgimari Church Building Renovation</span></td>
+              <td>Project</td>
+              <td>2028</td>
+              <td><span class="badge-status st-planning"><span class="badge-dot"></span>Planning</span></td>
+            </tr>
+            <tr>
+              <td><span class="td-name">Community Library & Resource Room </span></td>
+              <td>Development</td>
+              <td>2027</td>
+              <td><span class="badge-status st-proposed"><span class="badge-dot"></span>Active</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline-section">
+      <p class="sec-label">Development Roadmap</p>
+      <div class="timeline">
+        <div class="tl-item done">
+          <div class="tl-dot"></div>
+          <div class="tl-period">2023 – 2024</div>
+          <div class="tl-title">Foundation & Needs Assessment</div>
+          <div class="tl-body">The Projects Committee of Singgimari Baptist Church identifies community needs, evaluates church priorities, and establishes strong foundations for spiritual, social, and developmental programs benefiting members and surrounding communities.</div>
+        </div>
+        <div class="tl-item done">
+          <div class="tl-dot"></div>
+          <div class="tl-period">2025</div>
+          <div class="tl-title">Active Program Launch</div>
+          <div class="tl-body">The committee actively launches programs focused on ensuring effective participation, organized management, and meaningful impact through church-led initiatives.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-period">2026</div>
+          <div class="tl-title">Community Outreach Planning</div>
+          <div class="tl-body">The committee plans outreach activities including social service, aid distribution, and fellowship programs to strengthen relationships, spread Christian values, and support the spiritual and practical needs of communities.</div>
+        </div>
+        <div class="tl-item future">
+          <div class="tl-dot"></div>
+          <div class="tl-period">2027 – 2028</div>
+          <div class="tl-title">Long-Range Development</div>
+          <div class="tl-body">The Projects Committee develops long-term planning for church growth, infrastructure improvement, leadership development, financial sustainability, and future ministry expansion to ensure lasting impact and continued service to God.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Members -->
+    <div class="members-section">
+      <p class="sec-label">Committee Members</p>
+      <div class="members-grid">
+        <div class="member-card">
+          <div class="member-av">C</div>
+          <div><div class="member-name">Chairperson</div><div class="member-role">Committee Head</div></div>
+        </div>
+        <div class="member-card">
+          <div class="member-av">S</div>
+          <div><div class="member-name">Secretary</div><div class="member-role">Records & Minutes</div></div>
+        </div>
+        <div class="member-card">
+          <div class="member-av">T</div>
+          <div><div class="member-name">Treasurer</div><div class="member-role">Budget Oversight</div></div>
+        </div>
+        <div class="member-card">
+          <div class="member-av">M</div>
+          <div><div class="member-name">Member</div><div class="member-role">Programs Lead</div></div>
+        </div>
+        <div class="member-card">
+          <div class="member-av">M</div>
+          <div><div class="member-name">Member</div><div class="member-role">Development Lead</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripture -->
+    <div class="scripture-block">
+      <p>"For which of you, desiring to build a tower, does not first sit down and count the cost, whether he has enough to complete it?"</p>
+      <cite>Luke 14:28</cite>
+    </div>
+
+  </div>
+</main>
+
+<!-- ══════════════ FOOTER — UNTOUCHED ════════════════════ -->
+<footer>
+  <p>© 2026 Singgimari Baptist Church</p>
+  <p>"Come to me, all who are weary and burdened, and I will give you rest." — Matthew 11:28</p>
+</footer>
+<script src="js/posts.js"></script>
+<script>
+function toggleMenu(){
+  const btn=document.querySelector('.menu-btn');
+  const menu=document.getElementById('navMenu');
+  btn.classList.toggle('active');
+  menu.classList.toggle('show');
+  btn.setAttribute('aria-expanded',btn.classList.contains('active'));
+}
+</script>
+</body>
+</html>

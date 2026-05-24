@@ -1,0 +1,264 @@
+/*Minimal, accessible, system-based styling*/
+body {
+      font-family: "Open Sans",
+               system-ui,
+               -apple-system,
+               BlinkMacSystemFont,
+               "Segoe UI",
+               Roboto,
+               Oxygen,
+               Ubuntu,
+               Cantarell,
+               "Helvetica Neue",
+               Arial,
+               sans-serif;
+      line-height: 1.6;
+      margin: 0;   
+      background-color: #fdffff;
+      color: #000520; 
+    }
+
+    header{}
+    
+    section, footer {
+      margin-block: 2.5rem;
+      max-width:100ch;
+      margin-inline:auto;
+      padding:0 1rem;
+    } 
+        .branding {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo {
+      width: 48px;
+      height: auto;
+    }
+    header p {
+     margin: 0.25rem 0 0;
+     font-size: 0.95rem;
+     color: #555;
+    }
+    nav a {
+      margin-right: 1rem;
+      text-decoration: none;
+      color: #0645ad;
+    }
+
+    nav a:focus,
+    nav a:hover {
+      text-decoration: none;
+    }
+
+    #content{
+      max-width:100ch;
+      margin-inline:auto;
+      padding:0 1rem;
+    }
+    
+    h1, h2 {
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      color: #022241;
+    }
+    .term {
+      color: rgba(0, 86, 247, 0.979);
+      font-weight: 500;
+    }
+    small {
+      margin-top: 0.25rem;
+      color: rgba(0, 0, 0, 0.55);
+      font-size: 0.65em;
+    }
+
+    /*Association and Felloship's Logo*/
+    .li-logo {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+    }
+
+    table{
+      width: 100ch;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    td, th{ 
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      background-color: rgba(47, 196, 255, 0.116);
+    }
+   
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    .table-wrapper table {
+      min-width: 600px;
+    }
+    .three-column-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.25rem 1.5rem;
+      color: #313441;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+
+    a:focus {
+      outline: px solid #0645ad;
+      outline-offset: 2px;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    #contact address {
+      font-style: normal;
+    }
+
+    #contact iframe {
+      width: 100%;
+      height: 250px;
+      border: 0;
+    }
+
+    /* Responsive — by the book */
+    @media (max-width: 768px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+        }
+      }
+
+    details summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 1.2rem;
+    }
+
+    details summary::marker {
+      display: none;
+    }
+
+    details summary::after {
+      content: " +";
+      font-size: 1.2rem;
+    }
+
+    details[open] summary::after {
+      content: " -";
+      font-size: 1.2rem;
+    }
+
+    footer {
+      font-size: 0.9rem;
+      color: #01001b;
+      border-top: 1px solid #ddd;
+      padding-top: 1rem;
+    }
+
+.content-section {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.content-section h2 {
+  margin-bottom: 1.5rem;  /* space between heading and columns */
+}
+
+.two-column {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .two-column {
+    grid-template-columns: 300px 1fr;
+  }
+}
+
+.media {
+  margin: 0;
+}
+
+.media img {
+  width: 100%;
+  display: block;
+}
+
+.content p:first-child {
+  margin-top: 0;   /* critical fix */
+}
+.media figcaption {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.5rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid #eee;
+}
+
+/*Blog Strip-----------------*/
+.blog-strip {
+  padding: 50px 20px;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.blog-strip-inner {
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.blog-strip-text h2 {
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+  color: #111827;
+}
+
+.blog-strip-text p {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.blog-strip-link {
+  margin-top: 10px;
+  text-decoration: none;
+  font-size: 1.2em;
+  color: #000270;
+  font-weight: 500;
+  position: relative;
+}
+
+.blog-strip-link::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 0%;
+  background: #82e0f8;
+  transition: width 0.2s ease;
+  margin-top: 2px;
+}
+
+.blog-strip-link:hover::after {
+  width: 50%;
+}
+
+
+

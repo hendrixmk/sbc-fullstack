@@ -1,0 +1,143 @@
+/* ============================================================
+   header.css — Singgimari Baptist Church
+   ============================================================ */
+
+.wiki-header {
+  background: #f4f8ff;
+  border-bottom: 1px solid rgba(0,30,100,0.1);
+  padding-block: 0.35rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 1px 6px rgba(0,20,80,0.07);
+  font-family: "Open Sans", system-ui, sans-serif;
+}
+
+.nav-container {
+  max-width: 96ch;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+/* ── Left ── */
+.wiki-left { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+.wiki-logo { width: 40px; height: 40px; object-fit: contain; }
+.wiki-title { margin: 0; font-size: 1rem; font-weight: 700; color: #01143a; letter-spacing: -0.01em; line-height: 1.2; }
+.wiki-tagline { display: block; font-size: 0.68rem; color: #6b7280; letter-spacing: 0.04em; }
+
+/* ── Centre nav ── */
+.wiki-nav { display: flex; align-items: center; gap: 0.2rem; }
+.wiki-nav .nav-item { position: relative; }
+.wiki-nav a {
+  display: inline-block;
+  text-decoration: none;
+  color: #1a3a6e;
+  font-size: 0.87rem;
+  font-weight: 600;
+  padding: 0.32rem 0.6rem;
+  border-radius: 4px;
+  transition: background 0.15s, color 0.15s;
+}
+.wiki-nav a:hover { background: #e5eeff; color: #e85d04; text-decoration: none; }
+
+/* ── Blogs badge ── */
+.blogs-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.7rem;
+  border: 1.5px solid #9ec5fe;
+  border-radius: 4px;
+  background: #dbeafe;
+  color: #1d4ed8 !important;
+  font-size: 0.87rem;
+  font-weight: 700;
+  transition: background 0.15s;
+}
+.blogs-btn:hover { background: #bfdbfe; border-color: #6ea8fe; color: #1d4ed8 !important; text-decoration: none; }
+
+/* ── Right ── */
+.wiki-right a {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #1a3a6e;
+  padding: 0.3rem 0.75rem;
+  border: 1.5px solid #c8d8f0;
+  border-radius: 4px;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.wiki-right a:hover { background: #e5eeff; border-color: #9ec5fe; text-decoration: none; }
+
+/* ── Hamburger ── */
+.menu-btn {
+  display: block;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 0.2rem 0.4rem;
+  color: #01143a;
+  border-radius: 4px;
+  transition: background 0.15s, transform 0.25s cubic-bezier(.4,0,.2,1);
+}
+.menu-btn::before { content: "☰"; }
+.menu-btn:hover { background: #e5eeff; }
+.menu-btn.active { transform: rotate(90deg); }
+.menu-btn.active::before { content: "✕"; }
+
+/* ── Mega-menu ── */
+.nav-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  background: rgba(248,251,255,0.97);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0,40,120,0.1);
+  box-shadow: 0 10px 28px rgba(0,20,80,0.1);
+  z-index: 999;
+}
+.nav-menu.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+.nav-menu-inner {
+  max-width: 96ch;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 1.75rem;
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.menu-column { display: flex; flex-direction: column; gap: 0.22rem; min-width: 110px; }
+.menu-column h4 {
+  font-size: 0.67rem;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 0.55rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+.nav-menu a { text-decoration: none; color: #1a2d5a; font-size: 0.87rem; font-weight: 500; padding: 0.16rem 0; transition: color 0.14s; }
+.nav-menu a:hover { color: #e85d04; text-decoration: none; }
+.menu-column a:first-of-type { font-weight: 600; }
+
+/* ── Mobile ── */
+@media (max-width: 700px) {
+  .wiki-nav { display: none; }
+  .nav-menu-inner { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.25rem 1.5rem; padding: 1rem 1.25rem 1.5rem; }
+  .wiki-title { font-size: 0.9rem; }
+  .wiki-tagline { display: none; }
+}

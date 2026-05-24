@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SBC – Construction Committee</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<body>
+<style>
+
+/* ── HOME BUTTON — UNTOUCHED ─────────────────────────────── */
+.top-home-btn{max-width:90ch;margin:0 auto 0;padding:0 15px;}
+.top-home-btn a{display:inline-block;text-decoration:none;color:#111827;font-weight:500;border:1px solid #e5e7eb;padding:5px 6px;border-radius:6px;transition:.25s;}
+.top-home-btn a:hover{background:#2563eb;color:white;border-color:#2563eb;}
+
+/* ── VARS ────────────────────────────────────────────────── */
+:root{
+  --bg        :#ffffff;
+  --surface   :#ffffff;
+  --border    :#e0dcd5;
+  --stone     :#8a7060;
+  --terra     :#b85c38;
+  --terra-light:#f5ede8;
+  --terra-mid :#deb8a8;
+  --ink       :#1e1b18;
+  --ink-mid   :#42392e;
+  --ink-light :#8c8070;
+  --rule      :#dcd8d0;
+  --fh        :'Open Sans', system-ui, sans-serif;
+  --fb        : 'Open Sans',
+               system-ui,
+               -apple-system,
+               BlinkMacSystemFont,
+               "Segoe UI";
+}
+
+.const-page{font-family:var(--fb);background:var(--bg);color:var(--ink);padding:60px 24px 96px;}
+.const-inner{max-width:85ch;margin-inline:auto;}
+
+/* HERO */
+.const-hero{
+  display:grid;
+  grid-template-columns:1fr 80px;
+  align-items:start;
+  gap:24px;
+  padding-bottom:32px;
+  border-bottom:1.5px solid var(--rule);
+  margin-bottom:52px;
+}
+.const-eyebrow{font-size:.68rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--terra);margin:0 0 10px;}
+.const-hero h1{font-family:var(--fh);font-size:clamp(2.2rem,5vw,3.1rem);font-weight:400;line-height:1.08;margin:0 0 14px;letter-spacing:-.3px;}
+.const-hero h1 em{font-style:italic;color:var(--terra);}
+.const-intro{font-size:.96rem;font-weight:300;color:var(--ink-mid);line-height:1.82;max-width:56ch;margin:0;}
+.const-badge{
+  width:72px;height:72px;border-radius:12px;
+  background:var(--terra-light);border:1.5px solid var(--terra-mid);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  flex-shrink:0;
+}
+.const-badge svg{width:24px;height:24px;stroke:var(--terra);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.const-badge span{font-size:.56rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);}
+
+/* SECTION LABEL */
+.sec-label{
+  font-size:.67rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--ink-light);margin:0 0 20px;
+  display:flex;align-items:center;gap:12px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+
+/* MANDATE — two columns with left rule */
+.mandate-list{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:24px;
+  margin-bottom:52px;
+}
+.mandate-item{
+  padding-left:16px;
+  border-left:3px solid var(--terra-mid);
+}
+.mandate-num{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:6px;}
+.mandate-title{font-family:var(--fh);font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:6px;line-height:1.2;}
+.mandate-desc{font-size:.8rem;font-weight:300;color:var(--ink-light);line-height:1.68;}
+
+/* WORK ITEMS — card grid */
+.works-section{margin-bottom:52px;}
+.works-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
+  gap:14px;
+}
+.work-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:22px 20px;
+  position:relative;
+  overflow:hidden;
+  transition:box-shadow .2s, transform .2s;
+}
+.work-card:hover{
+  box-shadow:0 4px 20px rgba(184,92,56,.1);
+  transform:translateY(-2px);
+}
+.work-card-accent{
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--terra);
+  opacity:var(--op,0.35);
+}
+.work-card[data-priority="high"]   { --op:1; }
+.work-card[data-priority="medium"] { --op:.55; }
+.work-card[data-priority="low"]    { --op:.25; }
+
+.work-cat{font-size:.67rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:8px;}
+.work-title{font-family:var(--fh);font-size:1.1rem;font-weight:600;color:var(--ink);margin-bottom:6px;line-height:1.25;}
+.work-desc{font-size:.8rem;font-weight:300;color:var(--ink-light);line-height:1.65;margin-bottom:14px;}
+.work-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.work-phase{font-size:.72rem;font-weight:500;color:var(--ink-mid);}
+
+.work-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:.7rem;font-weight:500;padding:3px 9px;border-radius:20px;
+}
+.wb-progress{background:#fff3e8;color:#9a4400;}
+.wb-review  {background:#ffeaea;color:#8a1a1a;}
+.wb-upcoming{background:#fffde8;color:#7a6200;}
+.wb-done    {background:#e8f5ea;color:#1a5a2a;}
+.work-dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;}
+
+/* PROCESS STEPS */
+.process-section{margin-bottom:52px;}
+.process-steps{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  counter-reset:step;
+}
+.process-step{
+  background:var(--surface);
+  padding:22px 18px;
+  position:relative;
+  counter-increment:step;
+}
+.process-step::before{
+  content:counter(step);
+  font-family:var(--fh);
+  font-size:3rem;
+  font-weight:400;
+  color:var(--terra-mid);
+  opacity:.4;
+  position:absolute;
+  top:10px;right:14px;
+  line-height:1;
+}
+.step-icon{
+  width:36px;height:36px;
+  background:var(--terra-light);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:12px;
+}
+.step-icon svg{width:18px;height:18px;stroke:var(--terra);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.step-title{font-size:.83rem;font-weight:600;color:var(--ink);margin-bottom:5px;}
+.step-desc{font-size:.77rem;font-weight:300;color:var(--ink-light);line-height:1.6;}
+
+/* CONTRACTOR NOTICE */
+.contractor-notice{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:16px;
+  align-items:start;
+  background:var(--terra-light);
+  border:1px solid var(--terra-mid);
+  border-radius:10px;
+  padding:20px 22px;
+  margin-bottom:52px;
+}
+.cn-icon{
+  width:40px;height:40px;background:#fff;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  border:1px solid var(--terra-mid);
+}
+.cn-icon svg{width:20px;height:20px;stroke:var(--terra);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.cn-title{font-size:.82rem;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.cn-body{font-size:.8rem;font-weight:300;color:var(--ink-mid);line-height:1.68;}
+
+/* MEMBERS */
+.members-section{margin-bottom:52px;}
+.members-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(176px,1fr));gap:10px;}
+.member-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:8px;
+  padding:16px 14px;display:flex;align-items:center;gap:12px;
+  transition:border-color .2s;
+}
+.member-card:hover{border-color:var(--terra-mid);}
+.member-av{
+  width:38px;height:38px;flex-shrink:0;border-radius:8px;
+  background:var(--terra-light);display:flex;align-items:center;justify-content:center;
+  font-family:var(--fh);font-size:1.1rem;color:var(--terra);
+}
+.member-name{font-size:.84rem;font-weight:500;color:var(--ink);margin-bottom:2px;line-height:1.2;}
+.member-role{font-size:.71rem;font-weight:300;color:var(--ink-light);}
+
+/* SCRIPTURE */
+.scripture-block{
+  border-left:3px solid var(--terra);padding:18px 22px;
+  background:var(--terra-light);border-radius:0 8px 8px 0;
+}
+.scripture-block p{font-family:var(--fh);font-style:italic;font-size:1.08rem;color:var(--terra);margin:0 0 6px;line-height:1.6;}
+.scripture-block cite{font-family:var(--fb);font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);opacity:.65;}
+
+</style>
+
+<!-- ══════════════ HEADER — UNTOUCHED ════════════════════ -->
+<header class="wiki-header">
+  <div class="nav-container">
+    <div class="wiki-left">
+      <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()"></button>
+      <img src="../images/logo.svg" class="wiki-logo" alt="Logo">
+      <div>
+        <h1 class="wiki-title">Singgimari Baptist Church</h1>
+        <span class="wiki-tagline">Jokatanian Nisan</span>
+      </div>
+    </div>
+    <nav class="wiki-nav">
+      <div class="nav-item"><a href="#" class="nav-trigger">Beliefs</a></div>
+      <div class="nav-item"><a href="#">History</a></div>
+      <div class="nav-item"><a href="#">Contact</a></div>
+      <div class="nav-item"><a href="blogs.html" class="blogs-btn">Blogs</a></div>
+    </nav>
+    <div class="wiki-right"><a href="login.html">Log-in</a></div>
+    <div id="navMenu" class="nav-menu">
+      <div class="nav-menu-inner">
+        <div class="menu-column">
+          <h4>Departments</h4>
+             <a href="../departments/mission.html">Mission</a>
+             <a href="../departments/women-ministry.html">Women Ministry</a>
+             <a href="../departments/youth-ministry.html">Youth Ministry</a>
+             <a href="../departments/men-ministry.html">Men Ministry</a>
+             <a href="../departments/education-ministry.html">Education Ministry</a>
+             <a href="../departments/finance.html">Finance</a>
+             <a href="../departments/projects.html">Projects</a>
+             <a href="../departments/construction.html">Construction</a>
+        </div>
+        <div class="menu-column">
+          <h4>Association</h4>
+          <a href="#">GBC</a><a href="#">Krima-X</a><a href="#">Proposed Krima</a>
+        </div>
+        <div class="menu-column">
+          <h4>Feeds</h4>
+          <a href="#">Gallery</a><a href="#">Sermons</a><a href="#">Poems</a>
+          <a href="blogs.html" class="menu-blogs-btn">Blogs</a>
+        </div>
+        <div class="menu-column">
+          <h4>Choir</h4>
+          <a href="#">Church Choir</a><a href="#">Children's Choir</a>
+        </div>
+        <div class="menu-column">
+          <h4>History</h4>
+          <a href="#">Founders</a><a href="#">Branch Formation</a>
+          <a href="#">Proposed Church</a><a href="#">Establishment</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<!-- ══════════════ MAIN ═══════════════════════════════════ -->
+<main class="const-page">
+  <div class="const-inner">
+
+    <!-- Hero -->
+    <div class="const-hero">
+      <div>
+        <p class="const-eyebrow">Committee · Singgimari Baptist Church</p>
+        <h1>Construction <em>Committee</em></h1>
+        <p class="const-intro">The Construction Committee oversees the physical stewardship of our church premises managing renovations, co-ordinating site works, liaising with contractors, and ensuring every structure faithfully serves the congregation.</p>
+      </div>
+      <div class="top-home-btn"><a href="../index.html">Home</a></div>
+      <div class="const-badge">
+        <svg viewBox="0 0 24 24"><path d="M2 20h20M6 20V10l6-6 6 6v10"/><path d="M10 20v-5h4v5"/></svg>
+        <span>Build</span>
+      </div>
+    </div>
+
+    <!-- Mandate -->
+    <p class="sec-label">Our Mandate</p>
+    <div class="mandate-list">
+      <div class="mandate-item">
+        <div class="mandate-num">01</div>
+        <div class="mandate-title">Renovation & Repairs</div>
+        <div class="mandate-desc">Assessing, planning, and overseeing the renovation and repair of all existing church structures to ensure they remain safe, functional, and well-maintained.</div>
+      </div>
+      <div class="mandate-item">
+        <div class="mandate-num">02</div>
+        <div class="mandate-title">Site Planning & Coordination</div>
+        <div class="mandate-desc">Coordinating site assessments, engaging licensed contractors, reviewing designs, and ensuring all construction work meets appropriate standards.</div>
+      </div>
+      <div class="mandate-item">
+        <div class="mandate-num">03</div>
+        <div class="mandate-title">Oversight & Accountability</div>
+        <div class="mandate-desc">Monitoring active works, verifying contractor deliverables, managing timelines, and reporting progress to the Church Council and Projects Committee.</div>
+      </div>
+    </div>
+
+    <!-- Active Works -->
+    <div class="works-section">
+      <p class="sec-label">Active & Upcoming Works</p>
+      <div class="works-grid">
+        <div class="work-card" data-priority="high">
+          <div class="work-card-accent"></div>
+          <div class="work-cat">Extpansion</div>
+          <div class="work-title">Office building extension</div>
+          <div class="work-desc">Office building extension to improve administrative space, accommodate growing activities, and support future church development needs.</div>
+          <div class="work-meta">
+            <span class="work-phase">Phase 2 of 3</span>
+            <span class="work-badge wb-progress"><span class="work-dot"></span>In Progress</span>
+          </div>
+        </div>
+        <div class="work-card" data-priority="high">
+          <div class="work-card-accent"></div>
+          <div class="work-cat">Renovation</div>
+          <div class="work-title">Toilet Block Refurbishment</div>
+          <div class="work-desc">Full refurbishment of the church toilet facilities including new fittings, tiling, plumbing upgrades, and improved ventilation.</div>
+          <div class="work-meta">
+            <span class="work-phase">Project pending</span>
+            <span class="work-badge wb-review"><span class="work-dot"></span>Under Review</span>
+          </div>
+        </div>
+        <div class="work-card" data-priority="medium">
+          <div class="work-card-accent"></div>
+          <div class="work-cat">Site Planning</div>
+          <div class="work-title">Premises — Site Assessment</div>
+          <div class="work-desc">Survey scheduled to identify suitable sites for youth festival camps and temporary premises accommodating participants and event activities</div>
+          <div class="work-meta">
+            <span class="work-phase">Survey Scheduled</span>
+            <span class="work-badge wb-upcoming"><span class="work-dot"></span>Upcoming</span>
+          </div>
+        </div>
+        <div class="work-card" data-priority="low">
+          <div class="work-card-accent"></div>
+          <div class="work-cat">Maintenance</div>
+          <div class="work-title">Perimeter Fence Restoration</div>
+          <div class="work-desc">Church area fencing and wall construction work for boundary protection, safety, and proper maintenance of church premises.</div>
+          <div class="work-meta">
+            <span class="work-phase">Q3 2026</span>
+            <span class="work-badge wb-upcoming"><span class="work-dot"></span>To be proposed</span>
+          </div>
+        </div>
+        <div class="work-card" data-priority="medium">
+          <div class="work-card-accent"></div>
+          <div class="work-cat">Construction</div>
+          <div class="work-title">Office's Premises Facilities</div>
+          <div class="work-desc">Successfully completed the construction of the office kitchen to support church office functions and improve facility convenience for members and staff.</div>
+          <div class="work-meta">
+            <span class="work-phase">Completed</span>
+            <span class="work-badge wb-done"><span class="work-dot"></span>Done</span>
+          </div>
+        </div>
+        <div class="work-card" data-priority="low">
+          <div class="work-card-accent"></div>
+          <div class="work-cat"></div>
+          <div class="work-title">Main premise ceiling</div>
+          <div class="work-desc">Planning renovation of the main church building ceiling through installation of ply-board materials to improve durability, enhance interior appearance, and provide better long-term maintenance and structural condition.</div>
+          <div class="work-meta">   
+            <span class="work-phase">Proposal Stage</span>
+            <span class="work-badge wb-upcoming"><span class="work-dot"></span>Planning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Process -->
+    <div class="process-section">
+      <p class="sec-label">How We Work</p>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </div>
+          <div class="step-title">Assessment</div>
+          <div class="step-desc">Site visits and structural assessments to identify the scope and urgency of works.</div>
+        </div>
+        <div class="process-step">
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div class="step-title">Planning</div>
+          <div class="step-desc">Preparing specifications, cost estimates, and timelines before seeking council approval.</div>
+        </div>
+        <div class="process-step">
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="step-title">Contractor Engagement</div>
+          <div class="step-desc">Inviting and evaluating bids, verifying credentials, and selecting suitable contractors.</div>
+        </div>
+        <div class="process-step">
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="step-title">Monitoring</div>
+          <div class="step-desc">Supervising active works on-site and providing regular progress updates to the council.</div>
+        </div>
+        <div class="process-step">
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="step-title">Handover</div>
+          <div class="step-desc">Final inspection, sign-off, and documentation before closing each project.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contractor notice -->
+    <div class="contractor-notice">
+      <div class="cn-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <div class="cn-title">Contractor Engagement Policy</div>
+        <div class="cn-body">All contractors engaged by the Construction Committee must hold valid registration and carry adequate insurance. Quotations are reviewed collectively by the committee, and all works above a defined threshold require Church Council approval prior to commencement. Members of the congregation with relevant trade qualifications are welcome to register their interest with the committee secretary.</div>
+      </div>
+    </div>
+
+    <!-- Members -->
+    <div class="members-section">
+      <p class="sec-label">Board of Committee</p>
+      <div class="members-grid">
+        <div class="member-card">
+          <div class="member-av">C</div>
+          <div><div class="member-name">Chairperson</div><div class="member-role">Committee Head</div></div>
+        </div>
+        <div class="member-card">
+          <div class="member-av">S</div>
+          <div><div class="member-name">Secretary</div><div class="member-role">Report verification</div></div>
+        </div>
+          <div class="member-card">
+          <div class="member-av">DE</div>
+          <div><div class="member-name">Domain expert</div><div class="member-role">Renovation Lead</div></div>
+        </div>
+        <div class="member-card">
+          <div class="member-av">SC</div>
+          <div><div class="member-name">Site Coordinator</div><div class="member-role">On-site Supervision</div></div>
+        </div>
+        <div class="member-card">
+          <div class="member-av">M</div>
+          <div><div class="member-name">Member</div><div class="member-role">Planning & Design</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripture -->
+    <div class="scripture-block">
+      <p>"Unless the Lord builds the house, the builders labour in vain."</p>
+      <cite>Psalm 127:1</cite>
+    </div>
+
+  </div>
+</main>
+
+<!-- ══════════════ FOOTER — UNTOUCHED ════════════════════ -->
+<footer>
+  <p>© 2026 Singgimari Baptist Church</p>
+  <p>"Come to me, all who are weary and burdened, and I will give you rest." — Matthew 11:28</p>
+</footer>
+<script src="js/posts.js"></script>
+<script>
+function toggleMenu(){
+  const btn=document.querySelector('.menu-btn');
+  const menu=document.getElementById('navMenu');
+  btn.classList.toggle('active');
+  menu.classList.toggle('show');
+  btn.setAttribute('aria-expanded',btn.classList.contains('active'));
+}
+</script>
+</body>
+</html>

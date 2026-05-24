@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SBC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/header.css">
+</head> 
+
+<body>
+  <style>
+    /* GLOBAL */
+.mission-modern{
+  width: 100;
+  padding: 20px 10%;
+  background: #f5f6f8;
+  font-family: "Georgia", "Times New Roman", serif;
+  color: #1a1a1a;
+}
+
+.mission-modern h1,
+.mission-modern h2,
+.mission-modern h3{
+  font-weight: 600;
+  letter-spacing: .5px;
+}
+/* TOP HOME BUTTON */
+.top-home-btn{
+  max-width: 95ch;
+  margin: 0 auto 0;
+  padding: 0 40px;
+}
+
+.top-home-btn a{
+  display: inline-block;
+  text-decoration: none;
+  color: #111827;
+  font-weight: 500;
+  border: 1px solid #e5e7eb;
+  padding: 5px 6px;
+  border-radius: 6px;
+  transition: .25s;
+}
+
+.top-home-btn a:hover{
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+/* HERO */
+.mission-hero{
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 70px;
+  align-items: center;
+  margin-bottom: 90px;
+}
+
+.mission-hero-left h1{
+  font-size: 2.6rem;
+  margin-bottom: 20px;
+}
+
+.mission-hero-left p{
+  line-height: 1.7;
+  margin-bottom: 30px;
+  color: #444;
+}
+
+.mission-hero-right img{
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.12);
+}
+
+/* BUTTONS */
+.primary-btn,
+.secondary-btn{
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 10px;
+  padding: 10px 18px;
+  text-decoration: none;
+  border-radius: 3px;
+  font-size: .9rem;
+  transition: .25s;
+}
+
+.primary-btn{
+  background: #002b5b;
+  color: white;
+}
+
+.primary-btn:hover{
+  background: #001a38;
+}
+
+.secondary-btn{
+  border: 1px solid #002b5b;
+  color: #002b5b;
+}
+
+.secondary-btn:hover{
+  background: #002b5b;
+  color: white;
+}
+
+/* INFO GRID */
+.mission-overview{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+  gap: 28px;
+  margin-bottom: 80px;
+}
+
+.mission-card{
+  background: white;
+  padding: 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid #e2e2e2;
+  transition: .25s;
+}
+
+.mission-card h3{
+  margin-bottom: 10px;
+  font-size: 1.15rem;
+}
+
+.mission-card p{
+  font-size: .9rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.mission-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  border-color: #002b5b;
+}
+
+/* TEAM & DIVISIONS */
+.mission-team{
+  margin-bottom: 90px;
+}
+
+.mission-team h2{
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #002b5b;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.team-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 18px;
+  list-style: none;
+  padding: 0;
+}
+
+.team-grid li{
+  background: white;
+  border: 1px solid #ddd;
+  padding: 18px;
+  border-radius: 4px;
+  transition: .2s;
+}
+
+.team-grid li:hover{
+  border-color: #002b5b;
+  box-shadow: 0 5px 12px rgba(0,0,0,.06);
+}
+
+.name{
+  display: block;
+  font-weight: 600;
+}
+
+.team-grid small{
+  color: #666;
+  font-size: .8rem;
+}
+/* TABLET */
+@media (max-width: 992px){
+
+  .mission-modern{
+    padding: 60px 7%;
+  }
+
+  .mission-hero{
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .mission-hero-left h1{
+    font-size: 2.1rem;
+  }
+
+  .hero-links{
+    justify-content: center;
+    margin-right: 10%;
+  }
+
+  .mission-hero-right img{
+    max-height: 320px;
+    object-fit: cover;
+  }
+
+  .mission-team h2{
+    font-size: 1.5rem;
+  }
+}
+
+
+/* MOBILE */
+@media (max-width: 600px){
+
+  .mission-modern{
+    padding: 10px 6%;
+  }
+
+  .mission-hero-left h1{
+    font-size: 1.7rem;
+    line-height: 1.3;
+  }
+
+  .mission-hero-left p{
+    font-size: .9rem;
+  }
+
+  .primary-btn,
+  .secondary-btn{
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    text-align: center;
+  }
+
+  .mission-card{
+    padding: 20px;
+  }
+
+  .mission-card h3{
+    font-size: 1rem;
+  }
+
+  .mission-card p{
+    font-size: .85rem;
+  }
+
+  .team-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .team-grid li{
+    text-align: center;
+  }
+
+  .mission-team h2{
+    font-size: 1.3rem;
+  }
+}
+/* SMOOTH SCROLL */
+html{
+  scroll-behavior: smooth;
+}
+  </style>
+<header class="wiki-header">
+
+<div class="nav-container">
+<div class="wiki-left">
+<button class="menu-btn" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()"></button>
+
+<img src="../images/logo.svg" class="wiki-logo" alt="Logo">
+
+<div>
+<h1 class="wiki-title">Singgimari Baptist Church</h1>
+<span class="wiki-tagline">Jokatanian Nisan</span>
+</div>
+</div>
+
+<nav class="wiki-nav">
+
+  <div class="nav-item">
+    <a href="#" class="nav-trigger">Beliefs</a>
+  </div>
+
+  <div class="nav-item">
+    <a href="#">History</a>
+  </div>
+
+  <div class="nav-item">
+    <a href="#">Contact</a>
+  </div>
+
+  <div class="nav-item">
+    <a href="blogs.html" class="blogs-btn">Blogs</a>
+  </div>
+
+</nav>
+
+<div class="wiki-right">
+
+  <a href="login.html">Log-in</a>
+</div>
+
+<div id="navMenu" class="nav-menu">
+  <div class="nav-menu-inner">
+    <div class="menu-column">
+      <h4>Departments</h4>
+       <a href="../departments/mission.html">Mission</a>
+       <a href="../departments/women-ministry.html">Women Ministry</a>
+       <a href="../departments/youth-ministry.html">Youth Ministry</a>
+       <a href="../departments/men-ministry.html">Men Ministry</a>
+       <a href="../departments/education-ministry.html">Education Ministry</a>
+       <a href="../departments/finance.html">Finance</a>
+       <a href="../departments/projects.html">Projects</a>
+       <a href="../departments/construction.html">Construction</a>
+       </div>
+
+  <div class="menu-column">  
+    <h4>Association</h4>
+    <a href="#">GBC</a>
+    <a href="#">Krima-X</a>
+    <a href="#">Proposed Krima</a>
+  </div>
+
+  <div class="menu-column">
+    <h4>Feeds</h4>
+    <a href="#">Gallery</a>
+    <a href="#">Sermons</a>
+    <a href="#">Poems</a>
+    <a href="blogs.html" class="menu-blogs-btn">Blogs</a>
+  </div>
+ 
+  <div class="menu-column">
+    <h4>Choir</h4>
+    <a href="#">Church Choir</a>
+    <a href="#">Children's Choir</a>
+  </div>
+
+  <div class="menu-column">
+    <h4>History</h4>
+    <a href="#">Founders</a>
+    <a href="#">Branch Formation</a>
+    <a href="#">Proposed Church</a>
+    <a href="#">Establishment</a>
+  </div>
+
+  </div>
+
+</div>
+</header>
+
+
+<main class="mission-modern">
+<div class="top-home-btn">
+  <a href="../index.html">← Home</a>
+</div>
+  <!-- HERO -->
+  <section class="mission-hero">
+
+    <div class="mission-hero-left">
+      <h2>Christian Education Ministry</h2>
+
+      <p>
+        The detailed content for ministries, departments, programs, events, and other pages will be gradually updated as official descriptions, photographs, announcements, and related materials are provided by the Pastor and church leadership. Our goal is to ensure that every section reflects the vision, mission, and heart of the church accurately and meaningfully.
+      </p>
+
+      <div class="hero-links">
+        <a href="#programs" class="primary-btn">Programs →</a>
+        <a href="#resources" class="secondary-btn">Resources</a>
+        <a href="#events" class="secondary-btn">Workshops</a>
+      </div>
+    </div>
+
+    <div class="mission-hero-right">
+      <img src="../images/simplicity.jpg">
+    </div>
+
+  </section>
+
+
+  <!-- PROGRAMS -->
+  <section class="mission-overview" id="programs">
+
+    <a href="#sundayschool" class="mission-card">
+      <h3>Sunday School</h3>
+      <p>
+        Foundational biblical education for children and early learners.
+      </p>
+    </a>
+
+    <a href="#youthclass" class="mission-card">
+      <h3>Youth Bible Study</h3>
+      <p>
+        Age-appropriate theological learning and discussion sessions.
+      </p>
+    </a>
+
+    <a href="#leadership" class="mission-card">
+      <h3>Leadership Training</h3>
+      <p>
+        Ministry preparation for future church leaders and teachers.
+      </p>
+    </a>
+
+    <a href="#literacy" class="mission-card">
+      <h3>Literacy Program</h3>
+      <p>
+        Reading and writing support for community members.
+      </p>
+    </a>
+
+  </section>
+
+
+  <!-- DIVISIONS -->
+  <section class="mission-team" id="divisions">
+    <h2>Learning Divisions</h2>
+
+    <ul class="team-grid">
+
+      <li>
+        <span class="name">Primary</span>
+        <small>Children Ages 5 – 10</small>
+      </li>
+
+      <li>
+        <span class="name">Junior</span>
+        <small>Ages 11 – 15</small>
+      </li>
+
+      <li>
+        <span class="name">Intermediate</span>
+        <small>Youth & College</small>
+      </li>
+
+      <li>
+        <span class="name">Young Adult</span>
+        <small>Bible Literacy</small>
+      </li>
+
+      <li>
+        <span class="name">Teacher Development</span>
+        <small>Instructor Training</small>
+      </li>
+
+    </ul>
+  </section>
+
+
+  <!-- RESOURCE CENTRE -->
+  <section class="mission-overview" id="resources">
+
+    <a href="#" class="mission-card">
+      <h3>Bible Study Materials</h3>
+      <p>
+        Curriculum outlines and downloadable lesson notes.
+      </p>
+    </a>
+
+    <a href="#" class="mission-card">
+      <h3>Teacher Guidelines</h3>
+      <p>
+        Teaching methods and instructional resources.
+      </p>
+    </a>
+
+    <a href="#" class="mission-card">
+      <h3>Student Worksheets</h3>
+      <p>
+        Learning exercises and activity sheets.
+      </p>
+    </a>
+
+    <a href="#" class="mission-card">
+      <h3>Reference Library</h3>
+      <p>
+        Recommended Christian literature and research.
+      </p>
+    </a>
+
+  </section>
+
+
+  <!-- EVENTS -->
+  <section class="mission-overview" id="events">
+
+    <a href="#" class="mission-card">
+      <h3>Monthly Seminar</h3>
+      <p>
+        Academic-style theological discussions.
+      </p>
+    </a>
+
+    <a href="#" class="mission-card">
+      <h3>Teacher Workshop</h3>
+      <p>
+        Instructional training sessions.
+      </p>
+    </a>
+
+    <a href="#" class="mission-card">
+      <h3>Examination Week</h3>
+      <p>
+        Assessment of student progress.
+      </p>
+    </a>
+
+    <a href="#" class="mission-card">
+      <h3>Vacation Bible School<small> <i>CSS</i></small></h3>
+      <p>
+        Seasonal intensive learning program.
+      </p>
+    </a>
+
+  </section>
+
+
+  <!-- TEAM -->
+  <section class="mission-team" id="members">
+    <h2>Education Ministry Leadership</h2>
+
+    <ul class="team-grid">
+
+      <li>
+        <span class="name">Tengsan A. Sangma</span>
+        <small>Director</small>
+      </li>
+
+      <li>
+        <span class="name">Lip B. Marak</span>
+        <small>Sunday School Teacher</small>
+      </li>
+
+      <li>
+        <span class="name">Soljeng M. Sangma</span>
+        <small>Sunday School Teacher</small>
+      </li>
+
+      <li>
+        <span class="name">Tracy Ch. Marak</span>
+        <small>Sunday School Teacher</small>
+      </li>
+
+      <li>
+        <span class="name">Jaksrame A. Sangma</span>
+        <small>Sunday School Teacher</small>
+      </li>
+
+      <li>
+        <span class="name">Lawrence N. Marak</span>
+        <small>Resource Manager</small>
+      </li>
+
+      <li>
+        <span class="name">Dambera B. Marak</span>
+        <small>Editor</small>
+      </li>
+
+    </ul>
+
+  </section>
+
+</main>
+ <footer>
+    <p>© 2026 Singgimari Baptist Church</p>
+    <p>
+      “Come to me, all who are weary and burdened,
+      and I will give you rest.” — Matthew 11:28
+    </p>
+  </footer>
+
+<!--MEGA MENU SCRIPT-->
+<script src="js/posts.js"></script>
+<script>
+function toggleMenu() {
+  const btn = document.querySelector('.menu-btn');
+  const menu = document.getElementById('navMenu');
+
+  btn.classList.toggle('active');
+  menu.classList.toggle('show');
+
+  const expanded = btn.classList.contains('active');
+  btn.setAttribute('aria-expanded', expanded);
+}
+</script>
+</body>
+</html>

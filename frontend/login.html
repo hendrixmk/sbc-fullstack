@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login — Singgimari Baptist Church</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <style>
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .auth-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 380px;
+      background: #fff;
+      border: 1px solid rgba(88, 57, 57, 0.2);
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,20,80,0.07);
+    }
+
+    .auth-logo {
+      display: block;
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 0.75rem;
+      object-fit: contain;
+    }
+
+    .auth-card h2 {
+      text-align: center;
+      font-size: 1.4rem;
+      color: #01143a;
+      margin: 0 0 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 0.3rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.6rem 0.85rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      box-sizing: border-box;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #3b6fd4;
+      box-shadow: 0 0 0 3px rgba(59,111,212,0.12);
+    }
+
+    .btn-auth {
+      width: 100%;
+      padding: 0.65rem;
+      background: #080a85;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-auth:hover { background: #0bdd74; color: #01143a; }
+    .btn-auth:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .auth-note {
+      text-align: center;
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+
+    .auth-note a {
+      color: #3b6fd4;
+      font-weight: 600;
+    }
+
+    .auth-back {
+      display: block;
+      text-align: center;
+      font-size: 0.83rem;
+      color: #6b7280;
+      margin-top: 1rem;
+      text-decoration: none;
+    }
+
+    .auth-back:hover { color: #374151; }
+
+    #message {
+      text-align: center;
+      font-size: 0.88rem;
+      padding: 0.6rem;
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+      display: none;
+    }
+
+    #message.error   { background: #fee2e2; color: #991b1b; display: block; }
+    #message.success { background: #d1fae5; color: #065f46; display: block; }
+    #message.info    { background: #dbeafe; color: #1e40af; display: block; }
+
+    .spinner {
+      display: inline-block;
+      width: 15px; height: 15px;
+      border: 2.5px solid rgba(255,255,255,0.4);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+
+<body class="auth-page">
+
+<!-- Header -->
+<header class="wiki-header">
+  <div class="nav-container">
+    <div class="wiki-left">
+      <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()"></button>
+      <img src="images/logo.svg" class="wiki-logo" alt="SBC Logo">
+      <div>
+        <h1 class="wiki-title">Singgimari Baptist Church</h1>
+        <span class="wiki-tagline">Jokatanian Nisan</span>
+      </div>
+    </div>
+    <nav class="wiki-nav">
+      <div class="nav-item"><a href="index.html#beliefs">Beliefs</a></div>
+      <div class="nav-item"><a href="index.html#history">History</a></div>
+      <div class="nav-item"><a href="index.html#contact">Contact</a></div>
+      <div class="nav-item"><a href="blogs.html" class="blogs-btn">Blogs</a></div>
+    </nav>
+    <div class="wiki-right">
+      <a href="login.html" style="border-color:#3b6fd4; color:#1a3a6e;">Log-in</a>
+    </div>
+    <!-- Mega menu omitted for brevity on auth pages -->
+    <div id="navMenu" class="nav-menu"></div>
+  </div>
+</header>
+
+<main class="auth-main">
+  <div class="auth-card">
+    <img src="images/singgimaribaptistchurch.png" class="auth-logo" alt="SBC">
+    <h2>Member Login</h2>
+
+    <!-- Alert message area -->
+    <div id="message"></div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="your@email.com" required autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn-auth" id="loginBtn">Login</button>
+    </form>
+
+    <p class="auth-note">
+      Only approved members can log in.<br>
+      <a href="register.html">Register here</a> and wait for admin approval.
+    </p>
+    <a href="index.html" class="auth-back">← Back to Home</a>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Singgimari Baptist Church</p>
+  <p>"Come to me, all who are weary and burdened, and I will give you rest." — Matthew 11:28</p>
+</footer>
+
+<script>
+  const API_URL = "http://localhost:5000";
+
+  function toggleMenu() {
+    const btn  = document.querySelector(".menu-btn");
+    const menu = document.getElementById("navMenu");
+    if (!btn || !menu) return;
+    btn.classList.toggle("active");
+    menu.classList.toggle("show");
+    btn.setAttribute("aria-expanded", btn.classList.contains("active"));
+  }
+
+  function showMsg(text, type) {
+    const el = document.getElementById("message");
+    el.textContent = text;
+    el.className = type; // "error", "success", or "info"
+  }
+
+  document.getElementById("loginForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const btn      = document.getElementById("loginBtn");
+    const email    = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    // Loading state
+    btn.disabled = true;
+    btn.innerHTML = `<span class="spinner"></span> Logging in...`;
+
+    try {
+      const res  = await fetch(API_URL + "/api/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await res.json();
+
+      if (data.token) {
+        // Save auth data to localStorage
+        localStorage.setItem("token",    data.token);
+        localStorage.setItem("role",     data.role);
+        localStorage.setItem("userName", data.name);
+
+        showMsg("Login successful! Redirecting...", "success");
+
+        setTimeout(() => {
+          window.location.href = data.role === "admin"
+            ? "admin.html"
+            : "member-dashboard.html";
+        }, 700);
+
+      } else {
+        showMsg(data.message || "Login failed. Please try again.", "error");
+        btn.disabled  = false;
+        btn.innerHTML = "Login";
+      }
+
+    } catch (err) {
+      showMsg("Could not connect to server. Please try again later.", "error");
+      btn.disabled  = false;
+      btn.innerHTML = "Login";
+    }
+  });
+</script>
+
+</body>
+</html>

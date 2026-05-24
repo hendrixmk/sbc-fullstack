@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Member Dashboard — Singgimari Baptist Church</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+<!-- ── Header ── -->
+<header class="wiki-header">
+  <div class="nav-container">
+    <div class="wiki-left">
+      <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()"></button>
+      <img src="images/logo.svg" class="wiki-logo" alt="SBC Logo">
+      <div>
+        <h1 class="wiki-title">Singgimari Baptist Church</h1>
+        <span class="wiki-tagline">Member Dashboard</span>
+      </div>
+    </div>
+    <nav class="wiki-nav">
+      <div class="nav-item"><a href="index.html">Home</a></div>
+      <div class="nav-item"><a href="blogs.html" class="blogs-btn">Blogs</a></div>
+    </nav>
+    <div class="wiki-right">
+      <a href="#" onclick="logout(); return false;">Logout</a>
+    </div>
+    <div id="navMenu" class="nav-menu"></div>
+  </div>
+</header>
+
+<!-- ── Dashboard Layout ── -->
+<div class="dashboard-wrapper">
+
+  <!-- ── Sidebar ── -->
+  <aside class="dashboard-sidebar">
+    <div class="sidebar-profile">
+      <img id="sidebarAvatar" src="images/singgimaribaptistchurch.png" class="sidebar-avatar" alt="Profile">
+      <p class="sidebar-name" id="sidebarName">Loading...</p>
+      <p class="sidebar-designation" id="sidebarDesignation"></p>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="#" class="active" onclick="switchTab('overview',this)"><span class="nav-icon">🏠</span>Overview</a></li>
+      <li><a href="#" onclick="switchTab('blog',this)"><span class="nav-icon">✍️</span>Write Blog</a></li>
+      <li><a href="#" onclick="switchTab('myposts',this)"><span class="nav-icon">📄</span>My Posts</a></li>
+      <li><a href="#" onclick="switchTab('gallery',this)"><span class="nav-icon">🖼️</span>Upload Gallery</a></li>
+      <li><a href="#" onclick="switchTab('mygallery',this)"><span class="nav-icon">📸</span>My Gallery</a></li>
+      <li><a href="#" onclick="switchTab('profile',this)"><span class="nav-icon">👤</span>My Profile</a></li>
+      <li><a href="#" onclick="switchTab('feedback',this)"><span class="nav-icon">💬</span>Send Feedback</a></li>
+      <li><a href="#" onclick="switchTab('events',this)"><span class="nav-icon">📅</span>View Events</a></li>
+    </ul>
+  </aside>
+
+  <!-- ── Main Content ── -->
+  <main class="dashboard-container">
+
+    <!-- Overview Tab -->
+    <div id="tab-overview" class="tab-panel active">
+      <div class="section-header">
+        <h2>Welcome, <span id="welcomeName">Member</span>!</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" id="statPosts">—</div>
+          <div class="stat-label">My Blog Posts</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="statGallery">—</div>
+          <div class="stat-label">Gallery Images</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="statApproved">—</div>
+          <div class="stat-label">Approved Posts</div>
+        </div>
+      </div>
+      <div class="form-card" style="background:#f0f6ff; border-color:#bfdbfe;">
+        <p style="margin:0; font-size:0.9rem; color:#1e40af;">
+          📌 <strong>Note:</strong> Submitted blogs and gallery images must be approved by an admin before they appear publicly.
+        </p>
+      </div>
+    </div>
+
+    <!-- Write Blog Tab -->
+    <div id="tab-blog" class="tab-panel">
+      <div class="section-header"><h2>Write a Blog Post</h2></div>
+      <div id="blogAlert"></div>
+      <div class="form-card">
+        <form id="blogForm">
+          <div class="form-group">
+            <label>Blog Title</label>
+            <input type="text" id="blogTitle" placeholder="Enter a meaningful title" required>
+          </div>
+          <div class="form-group">
+            <label>Content</label>
+            <textarea id="blogContent" placeholder="Share your thoughts, reflections, or news..." required style="min-height:200px;"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Cover Image <span style="color:#9ca3af; font-weight:400;">(optional)</span></label>
+            <input type="file" id="blogImage" accept="image/jpeg,image/png,image/webp">
+            <p class="form-hint">JPG, PNG, or WebP. Max ~5MB.</p>
+          </div>
+          <button type="submit" class="btn btn-primary" id="blogSubmitBtn">
+            Submit for Review
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- My Posts Tab -->
+    <div id="tab-myposts" class="tab-panel">
+      <div class="section-header"><h2>My Blog Posts</h2></div>
+      <div id="myPosts" class="grid">
+        <div class="loading-state"><span class="spinner spinner-dark"></span> Loading your posts...</div>
+      </div>
+    </div>
+
+    <!-- Upload Gallery Tab -->
+    <div id="tab-gallery" class="tab-panel">
+      <div class="section-header"><h2>Upload Gallery Image</h2></div>
+      <div id="galleryAlert"></div>
+      <div class="form-card">
+        <form id="galleryForm">
+          <div class="form-group">
+            <label>Image</label>
+            <input type="file" id="galleryImage" accept="image/jpeg,image/png,image/webp" required>
+            <p class="form-hint">JPG, PNG, or WebP. Max ~5MB.</p>
+          </div>
+          <div class="form-group">
+            <label>Caption <span style="color:#9ca3af; font-weight:400;">(optional)</span></label>
+            <input type="text" id="galleryCaption" placeholder="Describe this image...">
+          </div>
+          <button type="submit" class="btn btn-primary" id="gallerySubmitBtn">Upload Image</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- My Gallery Tab -->
+    <div id="tab-mygallery" class="tab-panel">
+      <div class="section-header"><h2>My Gallery Images</h2></div>
+      <div id="myGallery" class="grid">
+        <div class="loading-state"><span class="spinner spinner-dark"></span> Loading your images...</div>
+      </div>
+    </div>
+
+    <!-- Profile Tab -->
+    <div id="tab-profile" class="tab-panel">
+      <div class="section-header"><h2>My Profile</h2></div>
+      <div id="profileAlert"></div>
+
+      <!-- Profile picture card -->
+      <div class="form-card" style="margin-bottom:1.5rem;">
+        <h3 style="margin:0 0 1rem; font-size:1rem;">Profile Picture</h3>
+        <div style="display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+          <img id="profileAvatarPreview" src="images/singgimaribaptistchurch.png"
+               style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid #c8d8f0;" alt="Avatar">
+          <div>
+            <input type="file" id="avatarInput" accept="image/jpeg,image/png,image/webp" style="display:none;" onchange="previewAndUploadAvatar(this)">
+            <button class="btn btn-outline btn-sm" onclick="document.getElementById('avatarInput').click()">
+              📷 Change Picture
+            </button>
+            <p class="form-hint" style="margin-top:0.5rem;">Click to select. Auto-uploads on selection.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit profile form -->
+      <div class="form-card" style="margin-bottom:1.5rem;">
+        <h3 style="margin:0 0 1rem; font-size:1rem;">Edit Profile</h3>
+        <form id="profileForm">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="profileName" required>
+          </div>
+          <div class="form-group">
+            <label>Church Designation / Title</label>
+            <input type="text" id="profileDesignation" placeholder="e.g. Youth Director, Deacon, Member">
+            <p class="form-hint">This is shown alongside your name on posts.</p>
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" id="profilePhone" placeholder="+91 XXXXX XXXXX">
+          </div>
+          <div class="form-group">
+            <label>Bio <span style="color:#9ca3af;font-weight:400;">(optional)</span></label>
+            <textarea id="profileBio" placeholder="A short description about yourself..." style="min-height:80px;"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="profileSaveBtn">Save Changes</button>
+        </form>
+      </div>
+
+      <!-- Change password -->
+      <div class="form-card">
+        <h3 style="margin:0 0 1rem; font-size:1rem;">Change Password</h3>
+        <div id="passwordAlert"></div>
+        <form id="passwordForm">
+          <div class="form-group">
+            <label>Current Password</label>
+            <input type="password" id="currentPassword" required placeholder="••••••••">
+          </div>
+          <div class="form-group">
+            <label>New Password</label>
+            <input type="password" id="newPassword" required placeholder="••••••••" minlength="6">
+            <p class="form-hint">Minimum 6 characters.</p>
+          </div>
+          <button type="submit" class="btn btn-primary" id="passwordBtn">Update Password</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Feedback Tab -->
+    <div id="tab-feedback" class="tab-panel">
+      <div class="section-header"><h2>Send Feedback</h2></div>
+      <div id="feedbackAlert"></div>
+      <div class="form-card">
+        <form id="feedbackForm">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="fbName" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="fbEmail" required>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea id="fbMessage" placeholder="Share your thoughts, suggestions, or prayer requests..." required style="min-height:140px;"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="feedbackBtn">Send Feedback</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Events Tab -->
+    <div id="tab-events" class="tab-panel">
+      <div class="section-header"><h2>Upcoming Events</h2></div>
+      <div id="memberEvents">
+        <div class="loading-state"><span class="spinner spinner-dark"></span> Loading events...</div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <p>© 2026 Singgimari Baptist Church</p>
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script>
+// ── Config ──
+const API_URL = "http://localhost:5000";
+const token   = localStorage.getItem("token");
+const role    = localStorage.getItem("role");
+
+// Auth guard
+if (!token || role !== "member") {
+  window.location.href = "login.html";
+}
+
+// ── Helpers ──
+function toggleMenu() {
+  const btn  = document.querySelector(".menu-btn");
+  const menu = document.getElementById("navMenu");
+  if (btn && menu) {
+    btn.classList.toggle("active");
+    menu.classList.toggle("show");
+    btn.setAttribute("aria-expanded", btn.classList.contains("active"));
+  }
+}
+
+function logout() {
+  localStorage.clear();
+  window.location.href = "login.html";
+}
+
+function showToast(msg, type = "") {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.className   = "toast " + type;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 3000);
+}
+
+function showAlert(containerId, msg, type) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = `<div class="alert alert-${type}">${msg}</div>`;
+  setTimeout(() => { el.innerHTML = ""; }, 4000);
+}
+
+function setLoading(btn, loading, label = "Save") {
+  if (loading) {
+    btn.disabled  = true;
+    btn.innerHTML = `<span class="spinner"></span> Please wait...`;
+  } else {
+    btn.disabled  = false;
+    btn.innerHTML = label;
+  }
+}
+
+async function authFetch(url, opts = {}) {
+  const headers = { "Authorization": "Bearer " + token, ...(opts.headers || {}) };
+  if (!(opts.body instanceof FormData)) headers["Content-Type"] = "application/json";
+  return fetch(API_URL + url, { ...opts, headers });
+}
+
+function formatDate(d) {
+  return new Date(d).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+}
+
+// ── Tab Switch ──
+function switchTab(name, link) {
+  document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+  document.querySelectorAll(".sidebar-nav a").forEach(a => a.classList.remove("active"));
+  document.getElementById("tab-" + name).classList.add("active");
+  if (link) link.classList.add("active");
+
+  if (name === "myposts")  loadMyPosts();
+  if (name === "mygallery") loadMyGallery();
+  if (name === "profile")  loadProfile();
+  if (name === "events")   loadEvents();
+  if (name === "overview") loadOverview();
+}
+
+// ── Load Profile into sidebar + overview ──
+async function loadSidebarProfile() {
+  try {
+    const res  = await authFetch("/api/member/profile");
+    const user = await res.json();
+
+    document.getElementById("sidebarName").textContent = user.name || "";
+    document.getElementById("sidebarDesignation").textContent = user.designation || "Member";
+    document.getElementById("welcomeName").textContent = user.name ? user.name.split(" ")[0] : "Member";
+
+    if (user.profilePicture) {
+      document.getElementById("sidebarAvatar").src = user.profilePicture;
+    }
+  } catch (e) { /* silent */ }
+}
+
+// ── Overview Stats ──
+async function loadOverview() {
+  try {
+    const [postsRes, galleryRes] = await Promise.all([
+      authFetch("/api/member/posts"),
+      authFetch("/api/member/gallery")
+    ]);
+    const posts   = await postsRes.json();
+    const gallery = await galleryRes.json();
+
+    document.getElementById("statPosts").textContent   = posts.length   || 0;
+    document.getElementById("statGallery").textContent = gallery.length || 0;
+    document.getElementById("statApproved").textContent = posts.filter(p => p.status === "approved").length;
+  } catch (e) { /* silent */ }
+}
+
+// ── Submit Blog ──
+document.getElementById("blogForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById("blogSubmitBtn");
+  setLoading(btn, true);
+
+  const formData = new FormData();
+  formData.append("title",   document.getElementById("blogTitle").value);
+  formData.append("content", document.getElementById("blogContent").value);
+  const img = document.getElementById("blogImage").files[0];
+  if (img) formData.append("image", img);
+
+  try {
+    const res  = await authFetch("/api/member/posts", { method: "POST", body: formData });
+    const data = await res.json();
+
+    if (res.ok) {
+      showAlert("blogAlert", "✅ " + data.message, "success");
+      this.reset();
+    } else {
+      showAlert("blogAlert", "❌ " + (data.message || "Submission failed."), "error");
+    }
+  } catch (err) {
+    showAlert("blogAlert", "❌ Server error. Please try again.", "error");
+  }
+
+  setLoading(btn, false, "Submit for Review");
+});
+
+// ── My Posts ──
+async function loadMyPosts() {
+  const container = document.getElementById("myPosts");
+  container.innerHTML = `<div class="loading-state"><span class="spinner spinner-dark"></span> Loading...</div>`;
+
+  try {
+    const res   = await authFetch("/api/member/posts");
+    const posts = await res.json();
+    container.innerHTML = "";
+
+    if (!posts.length) {
+      container.innerHTML = `<p style="color:#9ca3af;">You haven't submitted any posts yet.</p>`;
+      return;
+    }
+
+    posts.forEach(post => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        ${post.imageUrl ? `<img src="${post.imageUrl}" class="card-image" alt="Post">` : ""}
+        <h3 class="card-title">${post.title}</h3>
+        <p class="card-text">${post.content.substring(0,120)}...</p>
+        <p style="font-size:0.73rem;color:#9ca3af;margin-top:0.35rem;">${formatDate(post.createdAt)}</p>
+        <span class="status ${post.status}">${post.status}</span>
+      `;
+      container.appendChild(div);
+    });
+  } catch (err) {
+    container.innerHTML = `<p style="color:#ef4444;">Failed to load your posts.</p>`;
+  }
+}
+
+// ── Upload Gallery Image ──
+document.getElementById("galleryForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById("gallerySubmitBtn");
+  setLoading(btn, true);
+
+  const formData = new FormData();
+  formData.append("image",   document.getElementById("galleryImage").files[0]);
+  formData.append("caption", document.getElementById("galleryCaption").value);
+
+  try {
+    const res  = await authFetch("/api/member/gallery", { method: "POST", body: formData });
+    const data = await res.json();
+
+    if (res.ok) {
+      showAlert("galleryAlert", "✅ " + data.message, "success");
+      this.reset();
+    } else {
+      showAlert("galleryAlert", "❌ " + (data.message || "Upload failed."), "error");
+    }
+  } catch (err) {
+    showAlert("galleryAlert", "❌ Server error.", "error");
+  }
+
+  setLoading(btn, false, "Upload Image");
+});
+
+// ── My Gallery ──
+async function loadMyGallery() {
+  const container = document.getElementById("myGallery");
+  container.innerHTML = `<div class="loading-state"><span class="spinner spinner-dark"></span> Loading...</div>`;
+
+  try {
+    const res    = await authFetch("/api/member/gallery");
+    const images = await res.json();
+    container.innerHTML = "";
+
+    if (!images.length) {
+      container.innerHTML = `<p style="color:#9ca3af;">You haven't uploaded any images yet.</p>`;
+      return;
+    }
+
+    images.forEach(img => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <img src="${img.imageUrl}" class="card-image" alt="Gallery">
+        ${img.caption ? `<p class="card-text">${img.caption}</p>` : ""}
+        <p style="font-size:0.73rem;color:#9ca3af;">${formatDate(img.createdAt)}</p>
+        <span class="status ${img.status}">${img.status}</span>
+      `;
+      container.appendChild(div);
+    });
+  } catch (err) {
+    container.innerHTML = `<p style="color:#ef4444;">Failed to load your gallery.</p>`;
+  }
+}
+
+// ── Load Profile into form ──
+async function loadProfile() {
+  try {
+    const res  = await authFetch("/api/member/profile");
+    const user = await res.json();
+
+    document.getElementById("profileName").value        = user.name        || "";
+    document.getElementById("profileDesignation").value = user.designation || "";
+    document.getElementById("profilePhone").value       = user.phone       || "";
+    document.getElementById("profileBio").value         = user.bio         || "";
+
+    if (user.profilePicture) {
+      document.getElementById("profileAvatarPreview").src = user.profilePicture;
+    }
+  } catch (err) { /* silent */ }
+}
+
+// ── Save Profile ──
+document.getElementById("profileForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById("profileSaveBtn");
+  setLoading(btn, true);
+
+  const body = {
+    name:        document.getElementById("profileName").value,
+    designation: document.getElementById("profileDesignation").value,
+    phone:       document.getElementById("profilePhone").value,
+    bio:         document.getElementById("profileBio").value
+  };
+
+  try {
+    const res  = await authFetch("/api/member/profile", { method: "PUT", body: JSON.stringify(body) });
+    const data = await res.json();
+
+    if (res.ok) {
+      showAlert("profileAlert", "✅ Profile updated successfully!", "success");
+      // Update sidebar
+      document.getElementById("sidebarName").textContent        = body.name;
+      document.getElementById("sidebarDesignation").textContent = body.designation || "Member";
+      document.getElementById("welcomeName").textContent        = body.name.split(" ")[0];
+      localStorage.setItem("userName", body.name);
+    } else {
+      showAlert("profileAlert", "❌ " + (data.message || "Update failed."), "error");
+    }
+  } catch (err) {
+    showAlert("profileAlert", "❌ Server error.", "error");
+  }
+
+  setLoading(btn, false, "Save Changes");
+});
+
+// ── Upload Profile Picture ──
+async function previewAndUploadAvatar(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  // Preview immediately
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById("profileAvatarPreview").src = e.target.result;
+    document.getElementById("sidebarAvatar").src        = e.target.result;
+  };
+  reader.readAsDataURL(file);
+
+  // Upload to server
+  const formData = new FormData();
+  formData.append("profilePicture", file);
+
+  try {
+    const res  = await authFetch("/api/member/profile/picture", { method: "PUT", body: formData });
+    const data = await res.json();
+
+    if (res.ok) {
+      showAlert("profileAlert", "✅ Profile picture updated!", "success");
+    } else {
+      showAlert("profileAlert", "❌ " + (data.message || "Upload failed."), "error");
+    }
+  } catch (err) {
+    showAlert("profileAlert", "❌ Server error.", "error");
+  }
+}
+
+// ── Change Password ──
+document.getElementById("passwordForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById("passwordBtn");
+  setLoading(btn, true);
+
+  const body = {
+    currentPassword: document.getElementById("currentPassword").value,
+    newPassword:     document.getElementById("newPassword").value
+  };
+
+  try {
+    const res  = await authFetch("/api/member/change-password", { method: "PUT", body: JSON.stringify(body) });
+    const data = await res.json();
+
+    if (res.ok) {
+      showAlert("passwordAlert", "✅ Password changed successfully!", "success");
+      this.reset();
+    } else {
+      showAlert("passwordAlert", "❌ " + (data.message || "Failed."), "error");
+    }
+  } catch (err) {
+    showAlert("passwordAlert", "❌ Server error.", "error");
+  }
+
+  setLoading(btn, false, "Update Password");
+});
+
+// ── Submit Feedback ──
+document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById("feedbackBtn");
+  setLoading(btn, true);
+
+  const body = {
+    name:    document.getElementById("fbName").value,
+    email:   document.getElementById("fbEmail").value,
+    message: document.getElementById("fbMessage").value
+  };
+
+  try {
+    const res  = await fetch(API_URL + "/api/feedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
+    const data = await res.json();
+
+    if (res.ok) {
+      showAlert("feedbackAlert", "✅ " + data.message, "success");
+      this.reset();
+    } else {
+      showAlert("feedbackAlert", "❌ " + (data.message || "Failed."), "error");
+    }
+  } catch (err) {
+    showAlert("feedbackAlert", "❌ Server error.", "error");
+  }
+
+  setLoading(btn, false, "Send Feedback");
+});
+
+// ── Events ──
+async function loadEvents() {
+  const container = document.getElementById("memberEvents");
+  container.innerHTML = `<div class="loading-state"><span class="spinner spinner-dark"></span> Loading...</div>`;
+
+  try {
+    const res    = await fetch(API_URL + "/api/events");
+    const events = await res.json();
+    container.innerHTML = "";
+
+    if (!events.length) {
+      container.innerHTML = `<p style="color:#9ca3af;">No upcoming events.</p>`;
+      return;
+    }
+
+    events.forEach(event => {
+      const isPast = new Date(event.date) < new Date();
+      const div    = document.createElement("div");
+      div.className = "card";
+      div.style.borderLeft = isPast ? "3px solid #d1d5db" : "3px solid #3b6fd4";
+      div.innerHTML = `
+        <div style="display:flex;gap:1rem;align-items:flex-start;">
+          <div style="text-align:center;min-width:48px;background:${isPast ? '#f3f4f6' : '#e5eeff'};border-radius:8px;padding:0.5rem 0.75rem;">
+            <div style="font-size:1.4rem;font-weight:800;color:${isPast ? '#9ca3af' : '#1a3a6e'};line-height:1;">
+              ${new Date(event.date).getDate()}
+            </div>
+            <div style="font-size:0.68rem;font-weight:600;color:${isPast ? '#9ca3af' : '#3b6fd4'};text-transform:uppercase;">
+              ${new Date(event.date).toLocaleString("default",{month:"short"})}
+            </div>
+          </div>
+          <div>
+            <h3 style="margin:0 0 0.25rem;font-size:0.95rem;">${event.title}</h3>
+            <p style="margin:0;font-size:0.83rem;color:#6b7280;">${event.description}</p>
+            ${event.location ? `<p style="margin:0.25rem 0 0;font-size:0.75rem;color:#9ca3af;">📍 ${event.location}</p>` : ""}
+            ${isPast ? `<span class="status" style="background:#f3f4f6;color:#6b7280;margin-top:0.4rem;display:inline-block;">Past</span>` : ""}
+          </div>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  } catch (err) {
+    container.innerHTML = `<p style="color:#ef4444;">Failed to load events.</p>`;
+  }
+}
+
+// ── Pre-fill feedback form with member name/email ──
+async function prefillFeedback() {
+  try {
+    const res  = await authFetch("/api/member/profile");
+    const user = await res.json();
+    if (user.name)  document.getElementById("fbName").value  = user.name;
+    if (user.email) document.getElementById("fbEmail").value = user.email;
+  } catch (e) { /* silent */ }
+}
+
+// ── Init ──
+loadSidebarProfile();
+loadOverview();
+prefillFeedback();
+</script>
+
+</body>
+</html>
