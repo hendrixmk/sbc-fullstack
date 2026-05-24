@@ -2,7 +2,7 @@
 // js/main.js — Public page scripts (index, blogs, gallery)
 // ============================================================
 
-const API_URL = "http://localhost:5000";
+const API_URL = "http://https://sbc-fullstack.onrender.com";
 
 // ── Fetch and render blog posts on blogs.html ──
 async function loadBlogs() {

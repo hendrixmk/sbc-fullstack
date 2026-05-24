@@ -5,7 +5,7 @@
 
 // ── Backend API base URL ──
 // Change this when deploying: update to your Render backend URL
-const API_URL = "http://localhost:5000";
+const API_URL = "https://sbc-fullstack.onrender.com";
 
 // ── Auth helpers ──
 const getToken  = () => localStorage.getItem("token");
