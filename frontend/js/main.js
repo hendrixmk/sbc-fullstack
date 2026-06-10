@@ -9,7 +9,7 @@ async function loadBlogs() {
   const container = document.getElementById("blog-container");
   if (!container) return;
 
-  container.innerHTML = `<p class="loading-text">Loading blogs...</p>`;
+  container.innerHTML = `<p class="loading-text"><span class="spinner"></span> Loading posts...</p>`;
 
   try {
     const res = await fetch(API_URL + "/api/posts");
@@ -18,33 +18,55 @@ async function loadBlogs() {
     container.innerHTML = "";
 
     if (!blogs.length) {
-      container.innerHTML = `<p style="color:#9ca3af;">No blogs published yet.</p>`;
+      container.innerHTML = `<p style="color:#9ca3af;text-align:center;">No posts yet.</p>`;
       return;
     }
 
     blogs.forEach(blog => {
       const div = document.createElement("div");
-      div.className = "blog-card";
+      div.className = "post-card";
+
+      const initials = blog.authorName
+        ? blog.authorName.split(" ").map(w => w[0]).slice(0, 2).join("").toUpperCase()
+        : "SB";
+
+      const isLong = blog.content.length > 300;
+
       div.innerHTML = `
-        ${blog.imageUrl ? `<img src="${blog.imageUrl}" alt="Blog image" class="blog-card-image">` : ""}
-        <div class="blog-card-body">
-          <h3 class="blog-card-title">${blog.title}</h3>
-          <p class="blog-card-excerpt">${blog.content.substring(0, 200)}${blog.content.length > 200 ? "..." : ""}</p>
-          <div class="blog-card-meta">
-            <span>✍️ ${blog.authorName}</span>
-            <span>${new Date(blog.createdAt).toLocaleDateString("en-IN", { day:"numeric", month:"short", year:"numeric" })}</span>
+        <div class="post-header">
+          <div class="post-avatar">${initials}</div>
+          <div>
+            <p class="post-author-name">${blog.authorName || "Singgimari Baptist Church"}</p>
+            <p class="post-date">${new Date(blog.createdAt).toLocaleDateString("en-IN", { day:"numeric", month:"long", year:"numeric" })}</p>
           </div>
         </div>
+        <h3 class="post-title">${blog.title}</h3>
+        <p class="post-body${isLong ? " collapsed" : ""}">${blog.content}</p>
+        ${isLong ? `<button class="post-toggle-btn">See more</button>` : ""}
+        ${blog.imageUrl ? `<img src="${blog.imageUrl}" alt="${blog.title}" class="post-image">` : ""}
+        <div class="post-footer">
+          <span class="post-reaction">© 2026 Singgimari Baptist Church</span>
+        </div>
       `;
+
+      if (isLong) {
+        const btn = div.querySelector(".post-toggle-btn");
+        const body = div.querySelector(".post-body");
+        btn.addEventListener("click", () => {
+          const collapsed = body.classList.toggle("collapsed");
+          btn.textContent = collapsed ? "See more" : "See less";
+        });
+      }
+
       container.appendChild(div);
     });
 
   } catch (err) {
-    container.innerHTML = `<p style="color:#ef4444;">Failed to load blogs. Please try again later.</p>`;
+    container.innerHTML = `<p style="color:#ef4444;text-align:center;">Failed to load posts. Please try again later.</p>`;
   }
 }
 
-// ── Fetch and render gallery on blogs.html ──
+// ── Fetch and render gallery ──
 async function loadGallery() {
   const container = document.getElementById("gallery-container");
   if (!container) return;
@@ -56,7 +78,7 @@ async function loadGallery() {
     container.innerHTML = "";
 
     if (!images.length) {
-      container.innerHTML = `<p style="color:#9ca3af;">No gallery images yet.</p>`;
+      container.innerHTML = `<p style="color:#9ca3af;text-align:center;grid-column:1/-1;">No photos yet.</p>`;
       return;
     }
 
@@ -64,9 +86,10 @@ async function loadGallery() {
       const div = document.createElement("div");
       div.className = "gallery-item";
       div.innerHTML = `
-        <img src="${img.imageUrl}" alt="${img.caption || 'Gallery image'}" loading="lazy">
+        <img src="${img.imageUrl}" alt="${img.caption || 'Gallery photo'}" loading="lazy">
         ${img.caption ? `<p class="gallery-caption">${img.caption}</p>` : ""}
       `;
+      div.addEventListener("click", () => openLightbox(img.imageUrl, img.caption));
       container.appendChild(div);
     });
 
@@ -75,6 +98,23 @@ async function loadGallery() {
   }
 }
 
+// ── Lightbox ──
+function openLightbox(src, caption) {
+  const overlay = document.getElementById("lightbox");
+  if (!overlay) return;
+  document.getElementById("lightbox-img").src = src;
+  document.getElementById("lightbox-caption").textContent = caption || "";
+  overlay.classList.add("active");
+}
+
+function closeLightbox() {
+  const overlay = document.getElementById("lightbox");
+  if (overlay) overlay.classList.remove("active");
+}
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeLightbox();
+});
 // ── Load events on index.html ──
 async function loadEvents() {
   const container = document.getElementById("events-container");
