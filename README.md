@@ -1,4 +1,4 @@
-Singgimari Baptist Church — Web App
+Singgimari Baptist Church Web App
 
 A website for Singgimari Baptist Church (Selsella, West Garo Hills, Meghalaya), built as a full-stack project with a real backend instead of a static site.
 
