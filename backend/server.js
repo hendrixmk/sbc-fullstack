@@ -25,6 +25,7 @@ app.use("/api/", limiter);
 // ── Middleware ──
 app.use(cors({
   origin: [
+    "https://sbc-fullstack.onrender.com/"
     "http://127.0.0.1:5500",
     "http://localhost:5500",
     "http://0.0.0.0:8080",
